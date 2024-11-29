@@ -1,0 +1,27 @@
+{% block title %}
+{% endblock %}
+
+{% block css %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/loading.css') }}">
+{% endblock %}
+
+{% block body %}
+  <main class="loading-container">
+    <div class="logo">
+      <img src="/static/img/thequestlogotype.png" alt="The Quest Logo">
+    </div>
+    <div class="loader">
+      <div class="circle" id="circle1"></div>
+      <div class="circle" id="circle2"></div>
+      <div class="circle" id="circle3"></div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='js/loading.js') }}"></script>
+  <script>
+    // Функция для редиректа на главную страницу после завершения загрузки
+    setTimeout(function() {
+      window.location.href = "/map";  // Укажите нужный маршрут
+    }, 2000);  // Ожидание 2 секунды (можно изменить в зависимости от продолжительности анимации)
+  </script>
+{% endblock %}
