@@ -1,45 +1,155 @@
-/* Глобальные стили для страницы */
+:root {
+    --primary-color: #FFCE00;
+    --primary-bg: rgba(255, 206, 0, 0.15);
+    --secondary-color: #1FEB85;
+    --secondary-bg: rgba(31, 235, 133, 0.15);
+    --background-color: #000000;
+    --text-color: #C5C5C5;
+    --hashtag-bg: #1A1A1A;
+    --hashtag-hover-bg: #333333;
+    --font-family: 'Chakra Petch', sans-serif;
+}
+
 body, html {
+    background-color: var(--background-color);
     margin: 0;
     padding: 0;
     height: 100vh;
-    font-family: 'Chakra Petch', sans-serif;
-    background-color: #1a1a1a;
+    overflow-x: hidden;
+    font-family: var(--font-family);
 }
 
-/* Контейнер страницы */
 .page-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 250px; /* Отступы для глобальной сетки */
-    box-sizing: border-box;
-    height: 100%; /* Высота контейнера равна высоте страницы */
+    height: calc(100vh - 250px);
+    text-align: center;
+    position: relative;
 }
 
-/* Обёртка стрелок и контента */
-.arrow-wrapper {
+.block {
+    display: none;
+}
+
+.block.active {
+    display: flex;
+}
+
+.profile-content {
     display: flex;
     align-items: center;
-    gap: 20px; /* Отступ между стрелками и контентом */
-    width: 100%; /* Растягиваем по всей ширине */
+    gap: 60px;
+}
+
+/* Изображение */
+.phone-img img {
+    height: auto;
+    clip-path: inset(0 0 5px 0);
+}
+
+/* Основной контент */
+.main-content {
+    text-align: left;
+    max-width: 534px;
+}
+
+.main-content h2 {
+    width: fit-content;
+    padding: 5px 30px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-bg);
+    color: var(--primary-color);
+    font-size: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.main-content h1 {
+    font-size: 44px;
+    color: var(--primary-color);
+    line-height: 1.3;
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.main-content p {
+    font-size: 22px;
+    color: var(--text-color);
+    margin-bottom: 25px;
+    width: 450px;
+}
+
+.main-content .hashtags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 316px;
+    height: 97px;
+
+}
+
+.main-content .hashtags p {
+    border: 1px solid var(--hashtag-bg);
+    background-color: var(--hashtag-bg);
+    width: auto;
+    color: #fff;
+    padding: 8px 16px;
+    margin: 0;
+    border-radius: 5px;
+    font-size: 19px;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.main-content .hashtags p:hover {
+    background-color: var(--hashtag-hover-bg);
+}
+
+/* Зеленый вариант */
+.main-content .green {
+    border-color: var(--secondary-color);
+    background-color: var(--secondary-bg);
+    color: var(--secondary-color);
+}
+
+.main-content h1.green {
+    color: var(--secondary-color);
+    background-color: transparent;
 }
 
 /* Стрелки */
 .arrow {
-    background-color: transparent;
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
     border: none;
     cursor: pointer;
+    padding: 0;
+    margin: 0;
+    z-index: 10;
+}
+
+.left-arrow {
+    left: 250px;
+    padding: 0;
+    margin: 0;
+}
+
+.right-arrow {
+    right: 250px;
+    padding: 0;
+    margin: 0;
 }
 
 .arrow img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
+    transition: filter 0.3s ease; /* плавный переход для изображения */
 }
 
-/* Основной блок с контентом */
-.content {
-    flex-grow: 1; /* Контент занимает оставшееся пространство */
-    text-align: center; /* Центрируем текст внутри */
-    color: #fff; /* Белый текст */
+.arrow:hover img {
+    filter: brightness(10); /* Увеличиваем яркость изображения */
 }
