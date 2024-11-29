@@ -56,12 +56,16 @@ body, html {
 .readmore a {
     text-decoration: none; /* Убираем подчеркивание у ссылки */
     font-size: 20px;
-    color: #FFCE00; /* Задаем нужный цвет */
+    color: rgb(128, 128, 128); /* Задаем нужный цвет */
     letter-spacing: 1px;
     line-height: 24px; /* Совпадает с высотой иконки */
     font-weight: 200;
     display: inline-flex;
     align-items: center; /* Выравнивание текста и иконки */
+}
+
+.readmore a:hover {
+    color: #FFCE00; /* Задаем нужный цвет */
 }
 
 .right-arrow-icon {
