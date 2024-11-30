@@ -1,0 +1,32 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/privacy-policy.css' %}">
+{% endblock %}
+
+{% block body %}
+<main>
+  <div class="privacy-detail">
+
+    <!-- Заголовок новости -->
+    <h1 class="privacy-title">The Quest <br> Privacy and Policy</h1>
+
+    <!-- Основной текст новости -->
+    <div class="privacy-content">
+        Adventurers, it’s time to celebrate! The official website for «The Quest» is live, marking the very first step in building something extraordinary. This is where your journey begins, and we’re thrilled to share it with you.
+        Here’s what you can explore:
+        
+        Home: All the latest news, updates, events, and insights into the game.
+        
+        Map: Discover the key locations of the game and find quick links to download «The Quest» on Google Play and the App Store.
+        
+        Profile: Detailed information about «The Quest»—from its characters to its unique features.
+        
+        This website is your hub for everything «The Quest». It’s designed to keep you connected, informed, and ready for every update or event in the game. We want you to feel like part of the journey as our world evolves and grows.
+        
+        This is just the beginning, and we’re excited to have you with us. The adventure starts here—stay tuned for more updates, surprises, and exclusive content.
+    </div>
+  </div>
+</main>
+{% endblock %}
