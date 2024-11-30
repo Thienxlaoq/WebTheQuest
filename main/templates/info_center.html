@@ -36,40 +36,41 @@
       </div>
 
       <div class="menu">
-        <button class="menu-button" data-section="news">NEWS</button>
-        <button class="menu-button" data-section="events">EVENTS</button>
-        <button class="menu-button" data-section="updates">UPDATES</button>
+        <button href="?section=news" class="menu-button" data-section="news">NEWS</button>
+        <button href="?section=events" class="menu-button" data-section="events">EVENTS</button>
+        <button href="?section=updates" class="menu-button" data-section="updates">UPDATES</button>
       </div>
     
 
     </div>
     <div class="news-events-updates">
-      <div class="content" id="news">
-        <div class="news-container">
-            {% if news_list %}
-                {% for news in news_list %}
-                    <div class="news-card">
-                        <!-- Изображение для новости -->
-                        <div class="news-image">
-                            <img src="{{ news.news_image.url }}" alt="{{ news.title }}">
-                        </div>
-                        <!-- Блок с фоном -->
-                        <div class="news-content" style="background-image: url('{{ news.content_image.url }}');">
-                            <p class="news-date">{{ news.published_date }}</p>
-                            <h2 class="news-title">{{ news.title|safe }}</h2>
-                            <div class="news-buttons">
-                              <button class="news-button small">
-                                <img src="{% static 'img/icon-share.svg' %}" alt="Share">
-                              </button>                              
-                                <a href="{% url 'news_detail' news.pk %}" class="news-button open">Open</a>
+        <div class="content" id="news">
+            <div class="news-container">
+                {% if news_list %}
+                    {% for news in news_list %}
+                        <div class="news-card">
+                            <div class="news-image">
+                                <img src="{{ news.news_image.url }}" alt="{{ news.title }}">
+                            </div>
+                            <div class="news-content" style="background-image: url('{{ news.content_image.url }}');">
+                                <p class="news-date">{{ news.published_date }}</p>
+                                <h2 class="news-title">{{ news.title|safe }}</h2>
+                                <div class="news-buttons">
+                                    <button class="news-button small">
+                                        <img src="{% static 'img/icon-share.svg' %}" alt="Share">
+                                    </button>
+                                    <a href="{% url 'news_detail' news.pk %}" class="news-button open">Open</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                {% endfor %}
-            {% else %}
-                <p>There are no news items available at the moment.</p>
-            {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <p>There are no news items available at the moment.</p>
+                {% endif %}
+            </div>
         </div>
+        <div class="content" id="events" style="display: none;">This is the EVENTS content.</div>
+        <div class="content" id="updates" style="display: none;">This is the UPDATES content.</div>
     </div>
     
     </div>

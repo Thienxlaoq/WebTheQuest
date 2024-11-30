@@ -99,7 +99,7 @@ body, html {
     margin-top: 90px;
 }
 
-.menu-button {
+.menu .menu-button {
     width: 200px;
     height: 60px;
     background-color: #0D0D0D;
@@ -113,6 +113,7 @@ body, html {
     transition: background-color 0.3s, color 0.3s;
     margin-right: 20px;
 }
+
 
 .menu-button:not(.active):hover {
     background-color: #131313;

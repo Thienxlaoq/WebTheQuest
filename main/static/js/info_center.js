@@ -1,7 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Info Center: ready!');
 
-    // Класс для переключения контента
+    const getUrlParam = (key) => {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(key);
+    };
+
     class ContentSwitcher {
         constructor(menuSelector, contentSelector, defaultSection) {
             this.menuButtons = document.querySelectorAll(menuSelector);
@@ -16,25 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
             this.init();
         }
 
-        // Инициализация: добавление обработчиков и установка дефолтного состояния
         init() {
+            const sectionFromUrl = getUrlParam('section') || this.defaultSection;
+
             this.menuButtons.forEach((button) => {
                 const sectionId = button.dataset.section;
-                button.addEventListener('click', () => this.showContent(sectionId));
+                button.addEventListener('click', (e) => {
+                    e.preventDefault(); // Предотвращаем стандартное действие, хотя для button это не обязательно
+                    this.showContent(sectionId);
+                    history.replaceState({}, '', `?section=${sectionId}`);
+                });
             });
 
-            // Устанавливаем дефолтный активный раздел
-            this.showContent(this.defaultSection);
+            this.showContent(sectionFromUrl);
         }
 
-        // Показывает выбранный контент и обновляет активную кнопку
         showContent(sectionId) {
-            // Скрыть все секции
             this.contentSections.forEach((section) => {
                 section.style.display = 'none';
             });
 
-            // Показать выбранную секцию
             const activeSection = document.getElementById(sectionId);
             if (activeSection) {
                 activeSection.style.display = 'block';
@@ -42,12 +47,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.warn(`Секция с ID '${sectionId}' не найдена.`);
             }
 
-            // Сброс активного состояния кнопок
             this.menuButtons.forEach((button) => {
                 button.classList.remove('active');
             });
 
-            // Установить активную кнопку
             const activeButton = [...this.menuButtons].find(
                 (button) => button.dataset.section === sectionId
             );
@@ -59,6 +62,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Инициализация переключателя
     new ContentSwitcher('.menu-button', '.content', 'news');
 });

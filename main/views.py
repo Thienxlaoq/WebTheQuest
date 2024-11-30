@@ -7,13 +7,14 @@ def map(request):
 
 
 def info_center(request):
-    # Получение всех новостей, отсортированных по дате публикации (от новых к старым)
-    news_list = News.objects.all().order_by('-published_date')  # Если новостей нет, будет пустой список
-    latest_news = news_list.first()  # Получаем самую последнюю новость
+    section = request.GET.get('section', 'news')  # Получение активной секции из параметров
+    news_list = News.objects.all().order_by('-published_date')
+    latest_news = news_list.first()
     return render(request, 'info_center.html', {
         'active_page': 'info_center',
         'news_list': news_list,
-        'latest_news': latest_news  # Передаем последнюю новость
+        'latest_news': latest_news,
+        'active_section': section
     })
 
 def news_detail(request, pk):
