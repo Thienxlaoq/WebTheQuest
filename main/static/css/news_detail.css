@@ -33,11 +33,16 @@ body, html {
   .news-title {
     font-family: 'Chakra Petch', sans-serif;
     font-size: 92px;
+    line-height: 92px;
     font-weight: bold;
     text-align: center;
     word-wrap: break-word; /* Разрыв текста при переполнении */
     margin-bottom: 25px; /* Отступ под заголовком */
     color: #ffffff;
+    margin: 0;
+  }
+  
+  p{
     margin: 0;
   }
 

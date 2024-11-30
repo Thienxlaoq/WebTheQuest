@@ -190,6 +190,10 @@ body, html {
   /* Заголовок не должен сжиматься, поэтому он будет растягивать контейнер */
 }
 
+p{
+  margin: 0;
+}
+
 .news-buttons {
   display: flex;
   justify-content: flex-end;

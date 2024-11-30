@@ -19,7 +19,7 @@
     </a>
 
     <!-- Заголовок новости -->
-    <h1 class="news-title">{{ news_item.title }}</h1>
+    <h1 class="news-title">{{ news_item.title|safe }}</h1>
 
     <!-- Дата публикации -->
     <p class="news-date">{{ news_item.published_date }}</p>
