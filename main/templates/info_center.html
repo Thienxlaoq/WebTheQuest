@@ -11,38 +11,38 @@
 {% endblock %}
 
 {% block body %}
-  <main>
+<main>
     <div class="main-container">
-      <div class="info">
-        <div class="main-content">
-          <span class="sub-title">{{ latest_news.published_date|date:"d F Y" }}</span>
-          <p>NEW POST</p>
+        <div class="info">
+            {% if latest_news %}
+                <div class="main-content">
+                    <span class="sub-title">{{ latest_news.published_date|date:"d F Y" }}</span>
+                    <p>NEW POST</p>
+                </div>
+                <div class="main-text">
+                    <p>{{ latest_news.title|safe }}</p>
+                </div>
+                <div class="readmore">
+                    <a href="{% url 'news_detail' latest_news.pk %}">
+                        READ MORE
+                        <svg class="right-arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 12L20.5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            {% else %}
+                <p class="no-news-message">No recent posts available.</p>
+            {% endif %}
         </div>
 
-        <div class="main-text">
-          <p>{{ latest_news.title|safe }}</p>
+        <div class="menu">
+            <button href="?section=news" class="menu-button" data-section="news">NEWS</button>
+            <button href="?section=events" class="menu-button" data-section="events">EVENTS</button>
+            <button href="?section=updates" class="menu-button" data-section="updates">UPDATES</button>
         </div>
-
-        <div class="readmore">
-          <a href="{% url 'news_detail' latest_news.pk %}">
-              READ MORE
-              <svg class="right-arrow-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3 12L20.5 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M14 19L21 12L14 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-          </a>
-      </div>
-      
-      </div>
-
-      <div class="menu">
-        <button href="?section=news" class="menu-button" data-section="news">NEWS</button>
-        <button href="?section=events" class="menu-button" data-section="events">EVENTS</button>
-        <button href="?section=updates" class="menu-button" data-section="updates">UPDATES</button>
-      </div>
-    
-
     </div>
+
     <div class="news-events-updates">
         <div class="content" id="news">
             <div class="news-container">
@@ -65,20 +65,14 @@
                         </div>
                     {% endfor %}
                 {% else %}
-                    <p>There are no news items available at the moment.</p>
+                    <p class="no-news-message">No news available at the moment.</p>
                 {% endif %}
             </div>
         </div>
         <div class="content" id="events" style="display: none;">This is the EVENTS content.</div>
         <div class="content" id="updates" style="display: none;">This is the UPDATES content.</div>
     </div>
-    
-    </div>
-    
-      <div class="content" id="events" style="display: none;">This is the EVENTS content.</div>
-      <div class="content" id="updates" style="display: none;">This is the UPDATES content.</div>
-    </div>
-    
   <script src="{% static 'js/info_center.js' %}"></script>
-  {% endblock %}
+</main>
+{% endblock %}
 </main>
