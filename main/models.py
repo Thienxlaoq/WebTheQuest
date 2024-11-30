@@ -8,8 +8,6 @@ class News(models.Model):
     content_image = models.ImageField(upload_to='content_imgs', null=True, verbose_name='Фон для блока новости')
     published_date = models.DateField(auto_now_add=True, verbose_name='Дата публикации')
     is_visible = models.BooleanField(default=True, verbose_name="Показывать новость")
-
-
     def __str__(self):
         return self.title
 
