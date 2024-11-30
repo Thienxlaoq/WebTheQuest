@@ -8,6 +8,7 @@
 
 {% block css %}
   <link rel="stylesheet" href="{% static 'css/info_center.css' %}">
+  <link rel="stylesheet" href="{% static 'css/card.css' %}">
 {% endblock %}
 
 {% block body %}
@@ -73,60 +74,74 @@
 
         <!-- Секция Events -->
         <div class="content" id="events" style="display: none;">
-            <div class="events-container">
-                {% if events_list %}
-                    {% for event in events_list %}
-                    <div class="event-card">
-                      {% if event.image %}
+          <div class="events-container">
+              {% if events_list %}
+                  {% for event in events_list %}
+                  <div class="event-card">
+                      {% if event.event_image %}
                           <div class="event-image">
-                              <img src="{{ event.image.url }}" alt="{{ event.title }}">
+                              <img src="{{ event.event_image.url }}" alt="{{ event.title }}">
                           </div>
                       {% else %}
                           <div class="event-image">
                               <img src="{% static 'img/default-event.png' %}" alt="Default Event Image">
                           </div>
                       {% endif %}
-                      <div class="event-content" style="background-image: url('{{ event.content_image.url }}');">
+                      <div class="event-content" style="background-image: url('{{ event.event_content_image.url }}');">
                           <p class="event-date">{{ event.date|date:"d F Y H:i" }}</p>
-                          <h2 class="event-title">{{ event.title }}</h2>
-                          <p class="event-description">{{ event.description }}</p>
+                          <h2 class="event-title">{{ event.title|safe }}</h2>
+                          <div class="news-buttons">
+                              <button class="event-button small">
+                                  <img src="{% static 'img/icon-share.svg' %}" alt="Share">
+                              </button>
+                              <a href="#" class="news-button open">Open</a>
+                          </div>
                       </div>
                   </div>
-                  
-                    {% endfor %}
-                {% else %}
-                    <p class="no-events-message">No events available at the moment.</p>
-                {% endif %}
-            </div>
+                  {% endfor %}
+              {% else %}
+                  <p class="no-events-message">No events available at the moment.</p>
+              {% endif %}
+          </div>
         </div>
+        
 
-        <!-- Секция Updates -->
-        <div class="content" id="updates" style="display: none;">
-            <div class="updates-container">
-                {% if updates_list %}
-                    {% for update in updates_list %}
-                    <div class="update-card">
-                      {% if update.icon %}
-                          <div class="update-icon">
-                              <img src="{{ update.icon.url }}" alt="{{ update.title }}">
-                          </div>
-                      {% else %}
-                          <div class="update-icon">
-                              <img src="{% static 'img/default-update.png' %}" alt="Default Update Icon">
-                          </div>
-                      {% endif %}
-                      <div class="update-content" style="background-image: url('{{ update.content_image.url }}');">
-                          <p class="update-date">{{ update.published_date }}</p>
-                          <h2 class="update-title">{{ update.title }}</h2>
-                          <p class="update-description">{{ update.description }}</p>
-                      </div>
+<!-- Секция Updates -->
+<div class="content" id="updates" style="display: none;">
+  <div class="updates-container">
+      {% if updates_list %}
+          {% for update in updates_list %}
+          <div class="update-card">
+              {% if update.update_image %}
+                  <div class="update-image">
+                      <img src="{{ update.update_image.url }}" alt="{{ update.title }}">
                   </div>
-                  
-                    {% endfor %}
-                {% else %}
-                    <p class="no-updates-message">No updates available at the moment.</p>
-                {% endif %}
-            </div>
+              {% else %}
+                  <div class="update-image">
+                      <img src="{% static 'img/default-update.png' %}" alt="Default Update Icon">
+                  </div>
+              {% endif %}
+              <div class="update-content" style="background-image: url('{{ update.update_content_image.url }}');">
+                  <p class="update-date">{{ update.published_date }}</p>
+                  <h2 class="update-title">{{ update.title|safe }}</h2>
+                  <div class="news-buttons">
+                      <button class="update-button small">
+                          <img src="{% static 'img/icon-share.svg' %}" alt="Share">
+                      </button>
+                      <!-- Заглушка вместо ссылки -->
+                      <a href="#" class="news-button open">Open</a>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      {% else %}
+          <p class="no-updates-message">No updates available at the moment.</p>
+      {% endif %}
+  </div>
+</div>
+
+
+
         </div>
     </div>
   <script src="{% static 'js/info_center.js' %}"></script>
