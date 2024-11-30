@@ -1,0 +1,67 @@
+body, html {
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
+  height: auto; /* Высота экрана */
+  font-family: 'Chakra Petch', sans-serif;
+}
+
+.news-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 150px auto 420px auto; /* Отступ сверху и снизу */
+    width: 1420px; /* Ширина основного блока */
+  }
+
+  .back-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #FFCE00;
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 2%;
+    margin-bottom: 35px; /* Отступ под ссылкой */
+  }
+
+  .back-link svg {
+    margin-right: 10px; /* Отступ между иконкой и текстом */
+  }
+
+  .news-title {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 92px;
+    font-weight: bold;
+    text-align: center;
+    word-wrap: break-word; /* Разрыв текста при переполнении */
+    margin-bottom: 25px; /* Отступ под заголовком */
+    color: #ffffff;
+    margin: 0;
+  }
+
+  .news-date {
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #7D7D7D;
+    margin: 25px 0 0 0;
+  }
+
+  .news-content {
+    margin-top: 50px;
+    width: 100%;  /* Растягиваем на доступную ширину */
+    max-width: 1100px;  /* Ограничиваем максимальной шириной 1100px */
+    box-sizing: border-box;  /* Включаем паддинги и границы в расчет ширины */
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    letter-spacing: 2%;
+    line-height: 1.5;
+    text-align: justify;
+    color: #ffffff;
+    word-wrap: break-word;  /* Перенос длинных слов */
+}
+
+  

@@ -17,7 +17,7 @@ body, html {
     color: #FF4E47;
 }
 
-.container {
+.main-container {
     border-bottom: 1px solid rgb(39, 39, 39);
     height: 677px;
     display: flex;
@@ -73,9 +73,7 @@ body, html {
     height: 24px;
     margin-left: 5px; /* Отступ от текста */
     vertical-align: middle;
-    fill: #FFCE00; /* Задаем цвет для SVG */
 }
-
 
 .main-content p {
     font-size: 15px;
@@ -135,3 +133,118 @@ body, html {
     background-color: #111;
     color: antiquewhite;
 }
+
+.news-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  margin-left: 265px;
+  margin-top: 50px;
+  z-index: 11;
+}
+
+.news-card {
+  width: 430px;
+  min-height: 475px; /* Минимальная высота карточки */
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.news-image img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+}
+
+.news-content {
+  flex-grow: 1; /* растягиваем блок */
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  background-color: #0000004f;
+  justify-content: space-between; /* Кнопки и заголовок растягиваются */
+}
+
+.news-date {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: #7d7d7d;
+  line-height: 29px;
+  letter-spacing: 2%;
+  margin: 0 0 10px 0;
+}
+
+.news-title {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 37px;
+  margin-top: 0;
+  margin-bottom: 10px; /* Отступ снизу для заголовка */
+  flex-shrink: 0; /* предотвращаем сжатие заголовка */
+  /* Заголовок не должен сжиматься, поэтому он будет растягивать контейнер */
+}
+
+.news-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  position: relative;
+  margin-top: auto; /* Кнопки всегда снизу, отталкиваются от заголовка */
+}
+
+.news-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.news-button.small {
+  width: 40px;
+  height: 40px;
+  background-color: transparent; /* Прозрачный фон */
+  border: 1px solid #5ef6ff; /* Обводка 1px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.news-button.small img {
+  width: 20px; /* Устанавливаем размер иконки */
+  height: 20px;
+}
+
+.news-button.open {
+  width: 80px;
+  height: 40px;
+  background-color: #5ef6ff;
+  font-size: 22px;
+  font-weight: 600;
+  font-family: 'Chakra Petch', sans-serif;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box; 
+  transition: all 0.2s ease;
+}
+
+.news-button.open:hover {
+  background-color: transparent; /* Фон становится прозрачным при наведении */
+  color: #5ef6ff; /* Текст остается черным */
+  border: 1px solid #5ef6ff;
+}
+
