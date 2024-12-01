@@ -32,6 +32,7 @@
     height: 270px;
     object-fit: cover;
     display: block;
+    cursor: pointer;
   }
   
   .news-content, .event-content, .update-content {

@@ -52,8 +52,10 @@
                     {% for news in news_list %}
                         <div class="news-card">
                             <div class="news-image">
-                                <img src="{{ news.news_image.url }}" alt="{{ news.title }}">
-                            </div>
+                                <a href="{% url 'news_detail' news.pk %}">
+                                    <img src="{{ news.news_image.url }}" alt="{{ news.title }}">
+                                </a>
+                            </div>                            
                             <div class="news-content" style="background-image: url('{{ news.content_image.url }}');">
                                 <p class="news-date">{{ news.published_date }}</p>
                                 <h2 class="news-title">{{ news.title|safe }}</h2>
@@ -80,7 +82,9 @@
                   <div class="event-card">
                       {% if event.event_image %}
                           <div class="event-image">
+                            <a href="#">
                               <img src="{{ event.event_image.url }}" alt="{{ event.title }}">
+                            </a>
                           </div>
                       {% else %}
                           <div class="event-image">
@@ -113,7 +117,9 @@
           <div class="update-card">
               {% if update.update_image %}
                   <div class="update-image">
+                    <a href="#">
                       <img src="{{ update.update_image.url }}" alt="{{ update.title }}">
+                    </a>
                   </div>
               {% else %}
                   <div class="update-image">
