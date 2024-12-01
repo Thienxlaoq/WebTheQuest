@@ -8,6 +8,11 @@
     --hashtag-bg: #1A1A1A;
     --hashtag-hover-bg: #333333;
     --font-family: 'Chakra Petch', sans-serif;
+
+    --content-max-width: 534px;
+    --gap-size: 10px;
+    --hashtag-padding: 8px 16px;
+    --arrow-size: 50px;
 }
 
 body, html {
@@ -51,7 +56,7 @@ body, html {
 /* Основной контент */
 .main-content {
     text-align: left;
-    max-width: 534px;
+    max-width: var(--content-max-width);
 }
 
 .main-content h2 {
@@ -83,7 +88,7 @@ body, html {
 .main-content .hashtags {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: var(--gap-size);
     width: 316px;
     height: 97px;
 
@@ -94,7 +99,7 @@ body, html {
     background-color: var(--hashtag-bg);
     width: auto;
     color: #fff;
-    padding: 8px 16px;
+    padding: var(--hashtag-padding);
     margin: 0;
     border-radius: 5px;
     font-size: 19px;
@@ -145,11 +150,33 @@ body, html {
 }
 
 .arrow img {
-    width: 50px;
-    height: 50px;
+    width: var(--arrow-size);
+    height: var(--arrow-size);
     transition: filter 0.3s ease; /* плавный переход для изображения */
 }
 
 .arrow:hover img {
     filter: brightness(10); /* Увеличиваем яркость изображения */
+}
+
+@media (max-width: 768px) {
+    .profile-content {
+        flex-direction: column;
+        gap: var(--gap-size);
+    }
+
+    .main-content h1 {
+        font-size: 36px;
+    }
+
+    .main-content p {
+        font-size: 18px;
+        width: 100%;
+    }
+
+    .main-content .hashtags {
+        width: 100%;
+        height: auto;
+        justify-content: center;
+    }
 }
