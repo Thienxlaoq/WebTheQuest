@@ -6,7 +6,7 @@
     transform: translateX(-50%);
     width: 308px;
     height: 60px;
-    background-color: rgba(37, 37, 37, 0.25);
+    background-color: rgb(15, 15, 15);
     border-radius: 10px;
     display: flex;
     justify-content: center;

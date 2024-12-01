@@ -4,28 +4,28 @@
 {% block title %}{{ news_item.title }}{% endblock %}
 
 {% block css %}
-  <link rel="stylesheet" href="{% static 'css/news_detail.css' %}">
+<link rel="stylesheet" href="{% static 'css/news_detail.css' %}">
 {% endblock %}
 
 {% block body %}
-<main>
-  <div class="news-detail">
+<main class="news">
+  <div class="news__detail">
     <!-- Ссылка назад -->
-    <a href="{% url 'news_list' %}" class="back-link">  <!-- ссылка на список новостей -->
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <a href="{% url 'news_list' %}" class="news__back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" class="news__back-icon" viewBox="0 0 24 24">
         <polyline points="15 18 9 12 15 6"></polyline>
       </svg>
       BACK TO NEWS
     </a>
 
     <!-- Заголовок новости -->
-    <h1 class="news-title">{{ news_item.title|safe }}</h1>
+    <h1 class="news__title">{{ news_item.title|safe }}</h1>
 
     <!-- Дата публикации -->
-    <p class="news-date">{{ news_item.published_date }}</p>
+    <p class="news__date">{{ news_item.published_date }}</p>
 
     <!-- Основной текст новости -->
-    <div class="news-content">
+    <div class="news__content">
       {{ news_item.description|linebreaks }}
     </div>
   </div>
