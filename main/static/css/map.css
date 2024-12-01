@@ -1,42 +1,45 @@
-
-body, html {
-    max-width: 100%;
-    margin: 0;
-    padding: 0;
-    color: #fff;
-    background: url('../img/HeroSection.png') no-repeat center center/cover;
-    background-color: #111;
-    height: 100vh; /* Высота экрана */
-    overflow-x: hidden; /* Убираем горизонтальный скролл */
+:root {
+    --font-family: 'Chakra Petch', sans-serif;
+    --color-primary: #FFCE00;
+    --color-secondary: #5EF6FF;
+    --color-text: #7E7E7E;
+    --color-bg: #111;
+    --color-overlay: rgba(0, 0, 0, 0.5);
+    --font-size-large: 88px;
+    --font-size-title: 128px;
+    --modal-bg-color: #0d0d0d;
+    --modal-border-color: #2F2F2F;
+    --progress-bar-height: 3px;
 }
 
-/* Стили выделения текста */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+    color: #fff;
+    background: var(--color-bg) url('../img/HeroSection.png') no-repeat center/cover;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
 ::selection {
     background: transparent; 
     color: #FF4E47; 
 }
-::-moz-selection {
-    background: transparent; 
-    color: #FF4E47;
-}
 
-/* Центрируем контент */
 main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: calc(100vh - 400px);
     text-align: center;
-    position: relative;
-    font-family: 'Chakra Petch', sans-serif;
 }
 
-/* Блок с текстом и кнопкой */
 .centered-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    cursor: pointer; /* Для работы hover на всем блоке */
+    cursor: pointer;
     transition: all 0.2s;
     position: relative;
 }
@@ -47,43 +50,46 @@ main {
     align-items: center;
 }
 
-/* Аналогичные настройки для текста "Welcome to" */
-.centered-content .welcome {
-    font-size: 88px;
-    font-family: 'Chakra Petch', sans-serif;
-    font-weight: 600; /* semibold */
-    font-style: italic; /* italic */
+.centered-text .welcome {
+    font-size: var(--font-size-large);
+    font-weight: 600;
+    font-style: italic;
     color: transparent;
-    -webkit-text-stroke: 2px #8B8B8B; /* Обводка текста */
-    line-height: 106px; /* Межстрочное расстояние */
-    letter-spacing: -3px; /* Межбуквенное расстояние */
-    transition: all 0.2s ; /* Эффект при уходе мыши */
+    -webkit-text-stroke: 2px #8B8B8B;
+    line-height: 106px;
+    letter-spacing: -3px;
+    transition: all 0.2s;
 }
 
-/* Стили текста "The Quest" */
-.centered-content .title {
-    font-size: 128px;
-    font-family: 'Chakra Petch', sans-serif;
+.centered-text .title {
+    font-size: var(--font-size-title);
     font-weight: bold;
-    color: #070306; /* Основной цвет текста */
-    text-shadow: 0px 0px 16px rgba(255, 206, 0, 1); /* Желтая тень */
-    -webkit-text-stroke: 2px #FFCE00; /* Обводка текста */
-    line-height: 128px; /* Межстрочное расстояние */
-    margin: 0px;
-    position: relative; /* Для управления позиционированием псевдоэлементов */
-    transition: all 0.2s; /* Эффект при уходе мыши */
+    color: #070306;
+    text-shadow: 0px 0px 16px rgba(255, 206, 0, 1);
+    -webkit-text-stroke: 2px var(--color-primary);
+    line-height: 128px;
+    margin: 0;
+    position: relative;
+    transition: all 0.2s;
 }
 
-/* Кавычка слева */
-.centered-content .title::before {
+.title::before {
     content: '«';
     margin-right: 15px; 
 }
 
-/* Кавычка справа */
-.centered-content .title::after {
+.title::after {
     content: '»';
     margin-left: 15px;
+}
+
+.centered-content:hover .welcome {
+    color: #fff;
+    -webkit-text-stroke-color: white;
+}
+
+.centered-content:hover .title {
+    color: var(--color-primary);
 }
 
 /* Контейнер для кнопки */
@@ -91,38 +97,26 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute; /* Абсолютное позиционирование */
-    top: 100%; /* Расположим кнопки под блоком с текстом */
-    margin-top: 75px; /* Отступ между текстом и кнопкой */
+    position: absolute; 
+    top: 100%;
+    margin-top: 75px; 
     width: 100%;
 }
 
-.cta-button-container .get-the-quest {
+.get-the-quest {
     width: 380px;
     height: 68px;
-    background: url(/static/img/button-default.svg);
+    background: url(/static/img/button-default.svg) no-repeat;
     border: none;
     cursor: pointer;
+    transition: all 0.3s;
 }
 
 .get-the-quest:hover {
-    width: 380px;
-    height: 68px;
-    background: url(/static/img/button-hover.svg);
-    border: none;
-    cursor: pointer;
+    background: url(/static/img/button-hover.svg) no-repeat;
 }
 
-/* Hover эффект для всего блока */
-.centered-content:hover .welcome{
-    color: #fff; /* Заполняем цветом */
-    -webkit-text-stroke-color: white; /* Убираем обводку */ 
-}
-
-.centered-content:hover .title {
-    color: #FFCE00; /* Специальный цвет для "The Quest" */
-}
-
+/* privacy-policy */
 
 .privacy-policy {
     width: 100%;
@@ -131,18 +125,20 @@ main {
     align-items: center;
     bottom: 45px;
     position: fixed;
+    font-size: 16px;
+    color: var(--color-text);
+    font-weight: 400;
 }
 
 .fixed-text-block {
-    padding-left: 250px; /* Отступ слева */
-    font-family: 'Chakra Petch', sans-serif;
+    padding-left: 250px;
     gap: 15px;
     text-align: left;
     color: #7E7E7E;   
 }
 
 .fixed-text-block .first-text {
-    color: #5EF6FF;
+    color: var(--color-secondary);
     margin: 0px;
     margin-bottom: 15px;
     font-size: 17px;
@@ -152,39 +148,34 @@ main {
 .fixed-text-block .second-text {
     margin: 0;
     padding: 0;
-    font-size: 16px;
-    font-weight: 400;
-}
-
-.privacy-block {
-    padding-right: 250px; /* Отступ справа */
-    color: #7E7E7E; /* Цвет текста */
-    font-family: 'Chakra Petch', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-}
-
-.second-text a{
-    color: #7E7E7E;
-    margin: 0;
-    padding: 0;
 }
 
 .second-text a:hover {
-    color: #5EF6FF;
+    color: var(--color-secondary);
+}
+
+.privacy-block {
+    padding-right: 250px;
+}
+
+.second-text a{
+    margin: 0;
+    padding: 0;
+    color: var(--color-text);
 }
 
 .privacy-block a{
-    color: #7E7E7E;
+    color: var(--color-text);
     padding-left: 30px;
 }
 
 .privacy-block a:hover {
-    color: #FFCE00;
+    color: var(--color-primary);
 }
 
 /* GOT THE QUEST */
-#overlaytwo {
+
+.modal {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -193,7 +184,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: var(--color-overlay);
     z-index: 11;
 }
 
@@ -237,7 +228,7 @@ main {
 #overlaytwo #main-text p{
     font-size: 48px;
     font-weight: bold;
-    -webkit-text-stroke: 2px #FFCE00;
+    -webkit-text-stroke: 2px var(--color-primary);
     color: transparent ;
 }
 
@@ -258,11 +249,11 @@ main {
     color: #747474;
 }
 #overlaytwo #description a:hover{
-    color: #FFCE00;
+    color: var(--color-primary);
 }
 
 #overlaytwo #description strong{
-    color: #FFCE00;
+    color: var(--color-primary);
 }
 
 #overlaytwo #chill-man {
@@ -281,7 +272,7 @@ main {
     width: 420px; /* Ширина прогресс-бара */
     height: 3px; /* Высота прогресс-бара */
     background-color: transparent; /* Цвет фона */
-    border: 1px solid #FFCE00; /* Рамка */
+    border: 1px solid var(--color-primary); /* Рамка */
     overflow: hidden; /* Скрываем содержимое за границей */
     position: relative;
     padding:4px 7px 4px 7px;
@@ -290,10 +281,38 @@ main {
 .progress {
     width: 1%; /* Начальная ширина заполнения */
     height: 100%;
-    background-color: #FFCE00; /* Цвет заполнения */
+    background-color: var(--color-primary); /* Цвет заполнения */
     transition: width 0.3s ease; /* Анимация плавного заполнения */
 }
 
+/* Адаптивность */
+@media (max-width: 768px) {
+    :root {
+        --font-size-large: 64px;
+        --font-size-title: 96px;
+    }
+
+    .cta-button-container .get-the-quest {
+        width: 300px;
+        height: 56px;
+    }
+
+    .privacy-policy {
+        flex-direction: column;
+        gap: 15px;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .modal-content {
+        padding: 20px;
+        height: auto;
+    }
+
+    .progress-bar {
+        max-width: 100%;
+    }
+}
 
 
 
