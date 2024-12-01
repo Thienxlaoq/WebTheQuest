@@ -9,7 +9,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('news/<int:pk>/', views.news_detail, name='news_detail'),
     path('news/', views.info_center, name='news_list'),
-    path('privacy-policy/', views.privacy_policy, name='privacy-policy'),
+    path('privacy_policy/', views.privacy_policy, name='privacy_policy'),
 ]
 
 if settings.DEBUG:

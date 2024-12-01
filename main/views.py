@@ -37,7 +37,7 @@ def profile(request):
     return render(request, 'profile.html', {'active_page': 'profile'})
 
 def privacy_policy(request):
-    return render(request, 'privacy-policy.html')
+    return render(request, 'privacy_policy.html')
 
 def error_page(request, exception=None):
     return render(request, 'error_page.html', {'error': 'Страница не найдена'}, status=404)
