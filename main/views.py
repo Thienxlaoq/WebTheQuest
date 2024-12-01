@@ -7,19 +7,23 @@ def map(request):
 
 
 def info_center(request):
-    section = request.GET.get('section', 'news')  # Определяем активную секцию
+    section = request.GET.get('section', 'news')
     news_list = News.objects.filter(is_visible=True).order_by('-published_date')
     events_list = Event.objects.filter(is_visible=True).order_by('date')
     updates_list = Update.objects.filter(is_visible=True).order_by('-published_date')
 
-    latest_news = news_list.first() if news_list.exists() else None
+    featured_news = News.objects.filter(is_featured=True).first()
+    featured_event = Event.objects.filter(is_featured=True).first()
+    featured_update = Update.objects.filter(is_featured=True).first()
+
+    featured_item = featured_news or featured_event or featured_update
 
     return render(request, 'info_center.html', {
         'active_page': 'info_center',
         'news_list': news_list,
         'events_list': events_list,
         'updates_list': updates_list,
-        'latest_news': latest_news,
+        'latest_news': featured_item,
         'active_section': section
     })
 
