@@ -23,14 +23,16 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     position: relative;
+    margin: 0;
   }
-  
+
  /* Обновление стилей для всех карточек */
- .news-image img, .event-image img, .update-image img {
+  .news-image img, .event-image img, .update-image img {
     width: 100%;
     height: 270px;
     object-fit: cover;
-}
+    display: block;
+  }
   
   .news-content, .event-content, .update-content {
     flex-grow: 1;
