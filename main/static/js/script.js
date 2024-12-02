@@ -60,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         () => startProgressBar('progress') // Привязываем запуск прогресс-бара
     );
 
+});
+
     /*Переключение языка*/
     function initLanguageSwitch() {
         const languageSwitch = document.querySelector('.language-switch');
@@ -88,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     initLanguageSwitch();
+
     
-});
 
 
