@@ -270,19 +270,20 @@ main {
 
 .progress-bar {
     width: 420px; /* Ширина прогресс-бара */
-    height: 3px; /* Высота прогресс-бара */
+    height: 4px; /* Высота прогресс-бара */
     background-color: transparent; /* Цвет фона */
-    border: 1px solid var(--color-primary); /* Рамка */
+    outline: 1px solid var(--color-primary); /* Рамка */
+    outline-offset:5px;
     overflow: hidden; /* Скрываем содержимое за границей */
     position: relative;
-    padding:4px 7px 4px 7px;
 }
 
 .progress {
-    width: 1%; /* Начальная ширина заполнения */
+    position: absolute; /* Позволяет двигаться за пределы контейнера */
+    width: 100%; /* Начальная ширина заполнения */
     height: 100%;
     background-color: var(--color-primary); /* Цвет заполнения */
-    transition: width 0.3s ease; /* Анимация плавного заполнения */
+    transition: width 2s linear; /* Анимация плавного заполнения */
 }
 
 /* Адаптивность */

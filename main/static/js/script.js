@@ -50,6 +50,36 @@ document.addEventListener('DOMContentLoaded', () => {
         () => startProgressBar('progress')
     );
 
+    // Функция для прогресс-бара
+    function startProgressBar(progressId) {
+        const progressBar = document.getElementById(progressId);
+
+        if (!progressBar) {
+            console.warn('Progress bar not found.');
+            return;
+        }
+
+        let position = -100; // Стартовая позиция за пределами слева
+        const progressBarWidth = 100; // Ширина полоски в процентах
+
+        const animateProgress = () => {
+            progressBar.style.transition = 'none';
+            progressBar.style.left = `${position}%`;
+
+            setTimeout(() => {
+                progressBar.style.transition = 'left 2s linear'; // Плавное движение
+                progressBar.style.left = `${100}%`; // Движение направо
+            }, 50);
+
+            setTimeout(() => {
+                position = -progressBarWidth; // Перезапуск с начальной позиции
+                animateProgress();
+            }, 2050); // Общая длительность движения
+        };
+
+        animateProgress();
+    }
+
     // Инициализация переключателя языка
     function initLanguageSwitch() {
         const languageSwitch = document.querySelector('.language-switch');
@@ -83,39 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     initLanguageSwitch();
-
-    // Функция для прогресс-бара
-    function startProgressBar(progressId) {
-        const progressBar = document.getElementById(progressId);
-
-        if (!progressBar) {
-            console.warn('Progress bar not found.');
-            return;
-        }
-
-        let width = 0;
-
-        const animateProgress = () => {
-            progressBar.style.transition = 'none';
-            progressBar.style.width = '0%';
-            progressBar.style.opacity = '1';
-
-            setTimeout(() => {
-                progressBar.style.transition = 'width 2s ease';
-                progressBar.style.width = '100%';
-            }, 50);
-
-            setTimeout(() => {
-                progressBar.style.transition = 'opacity 1s ease';
-                progressBar.style.opacity = '0';
-            }, 2100);
-
-            setTimeout(animateProgress, 3100); // Заново запускаем анимацию
-        };
-
-        animateProgress();
-    }
 });
+
 
 
 
