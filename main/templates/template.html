@@ -12,12 +12,11 @@
   <meta property="og:type" content="website">
   <meta itemprop="name" content="The Quest"/>
   <title>{% block title %}{% endblock %}</title>
-  <link rel="icon" type="image/png" href="static/img/logoquest.png">
+  <link rel="icon" type="image/png" href="/static/img/logoquest.png">
   {% block css %}
   {% endblock %}
   <link rel="stylesheet" href="{% static 'css/header.css' %}">
   <link rel="stylesheet" href="{% static 'css/navigation.css' %}">
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
@@ -43,7 +42,6 @@
             </ul>
         </div>
           
-
           <button class="our-socials-btn socials">OUR SOCIALS</button>
           <div id="overlay" style="display: none;">
             <div id="content-block">
@@ -119,5 +117,6 @@
 </div>
 
   <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/navigation.js' %}"></script>
 </body>
 </html>

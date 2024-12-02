@@ -46,30 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /**
-     * Инициализация прогресс-бара
-     * @param {string} progressBarId - ID элемента прогресс-бара
-     */
-    function startProgressBar(progressBarId) {
-        const progressElement = document.getElementById(progressBarId);
-        if (!progressElement) {
-            console.warn(`Прогресс-бар с ID '${progressBarId}' не найден.`);
-            return;
-        }
-
-        let progress = 0;
-        const targetProgress = 70;
-
-        const interval = setInterval(() => {
-            if (progress < targetProgress) {
-                progress++;
-                progressElement.style.width = `${progress}%`;
-            } else {
-                clearInterval(interval);
-            }
-        }, 30);
-    }
-
     // Привязка модальных окон
     setupModal(
         'overlay', 
@@ -84,9 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         () => startProgressBar('progress') // Привязываем запуск прогресс-бара
     );
 
-    /**
-     * Переключение языка
-     */
+    /*Переключение языка*/
     function initLanguageSwitch() {
         const languageSwitch = document.querySelector('.language-switch');
         const languageMenu = document.querySelector('.language-menu');
@@ -114,55 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     initLanguageSwitch();
-
-    /**
-     * Эффект hover на "OUR SOCIALS"
-     */
-    function initSocialsHover() {
-        const socialsButton = document.querySelector('.our-socials-btn');
-        const socialsBlocks = document.querySelectorAll('.social-item');
-
-        if (!socialsButton || socialsBlocks.length === 0) return;
-
-        socialsButton.addEventListener('mouseover', () => {
-            socialsBlocks.forEach((block) => block.classList.add('hover'));
-        });
-
-        socialsButton.addEventListener('mouseout', () => {
-            socialsBlocks.forEach((block) => block.classList.remove('hover'));
-        });
-    }
-    initSocialsHover();
-
-    /**
-     * Эффект hover для кнопки "Get The Quest"
-     */
-    function initCtaButtonHover() {
-        const ctaButton = document.querySelector('.cta-button');
-        if (!ctaButton) return;
-
-        const defaultSrc = ctaButton.getAttribute('data-default-src');
-        const hoverSrc = ctaButton.getAttribute('data-hover-src');
-
-        ctaButton.addEventListener('mouseover', () => {
-            ctaButton.src = hoverSrc;
-        });
-
-        ctaButton.addEventListener('mouseout', () => {
-            ctaButton.src = defaultSrc;
-        });
-    }
-    initCtaButtonHover();
-
-
-
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.forEach(item => item.classList.remove('active')); // Удаляем класс у всех
-            link.classList.add('active'); // Добавляем активный класс текущему элементу
-        });
-    });
     
 });
 
