@@ -68,13 +68,9 @@
     display: block;
 }
 
-/* Иконка стрелки (поворот) */
-.arrow-icon {
-    transition: transform 0.3s ease;
-}
-
 .arrow-icon.arrow-rotated {
-    transform: rotate(180deg); /* Поворачиваем стрелку */
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
 }
 
 
