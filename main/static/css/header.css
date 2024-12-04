@@ -249,7 +249,7 @@
 
 #socials a{
     width: 150px;
-    height: auto;
+    height: 350px;
 }
 
 #socials a img {
@@ -315,10 +315,7 @@
         -webkit-text-stroke: 1px var(--primary-color);
     }
     
-    .social-img{
-        top: unset;
-        border-radius: 5px;
-    }
+
 }
 
 
