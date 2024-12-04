@@ -1,3 +1,11 @@
+:root {
+    --primary-color: #5EF6FF;
+    --background-dark: #222;
+    --text-light: #FFF;
+    --secondary-color: #FFCE00;
+    --font-family: 'Chakra Petch', sans-serif;
+}
+
 /* Header */
 .header {
     display: flex;
@@ -11,6 +19,7 @@
     width: 100%;
     z-index: 10; /* На переднем плане */
     box-sizing: border-box;
+    transform: none !important;
 }
 
 
@@ -53,7 +62,7 @@
     position: absolute;
     top: 100%; /* Меню располагается ниже переключателя */
     right: 0;
-    background: #222;
+    background: var(--background-dark);
     border-radius: 5px;
     list-style: none;
     z-index: 1000;
@@ -68,16 +77,19 @@
     display: block;
 }
 
-.arrow-icon.arrow-rotated {
-    transform: rotate(180deg);
+/* Иконка стрелки (поворот) */
+.arrow-icon {
     transition: transform 0.3s ease;
 }
 
+.arrow-icon.arrow-rotated {
+    transform: rotate(180deg); /* Поворачиваем стрелку */
+}
 
 /* Стили для элементов списка */
 .language-menu li {
     padding: 10px;
-    color: #fff;
+    color: var(--text-light);
     cursor: pointer;
     font-size: 16px;
     text-align: center;
@@ -85,7 +97,7 @@
 }
 
 .language-menu li:hover {
-    background: #FFCE00;
+    background: var(--secondary-color);
     color: black;
 }
 
@@ -110,7 +122,7 @@
     letter-spacing: -1%; /* Межбуквенное расстояние */
     color: #5EF6FF; /* Цвет текста */
     background: none; /* Убираем фон */
-    border: 2px solid #5EF6FF; /* Обводка кнопки */
+    border: 2px solid var(--primary-color); /* Обводка кнопки */
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s ease; /* Плавный переход при hover */
@@ -118,11 +130,9 @@
 
 /* Hover-эффект для OUR SOCIALS */
 .our-socials-btn:hover {
-    background: #5EF6FF; /* Заполняем цветом */
-    color: #111; /* Цвет текста при наведении */
+    background: var(--primary-color); /* Заполняем цветом */
+    color: var(--background-dark); /* Цвет текста при наведении */
 }
-
-
 
 /* OUR SOCIALS */
 
@@ -178,7 +188,7 @@
     font-weight: 800;
     font-style: italic;
     color: transparent;
-    -webkit-text-stroke: 3px #5EF6FF;
+    -webkit-text-stroke: 3px var(--primary-color);
     text-align: center;
     margin: 0;
     padding: 0;
@@ -269,10 +279,63 @@
 #send-btn {
     width: 320px;
     height: 50px;
-    background-color: #5EF6FF;
+    background-color: var(--primary-color);
     color: #111;
     text-align: center;
     font-size: 19px;
     font-weight: bold;
     cursor: pointer;
+}
+
+
+@media (max-width: 1190px) {
+
+    .header {
+        padding: 0px 100px; 
+    }
+    
+}
+
+@media (max-width: 520px) {
+
+    .header {
+        padding: 0px 25px; 
+        margin-top: 25px;
+    }
+
+    .header .logo img {
+        max-height: 34px; /* Размер логотипа */
+    }
+
+    .our-socials-btn {
+        width: 100px;
+        height: 25px;
+        font-size: 10px;
+    }
+
+    .language-switch {
+        gap: 4px;
+        font-size: 10px; 
+    }
+
+    .language-switch .icon,
+    .language-switch .arrow-icon {
+        width: 17px;
+        height: 17px;
+    }
+
+    .language-menu {
+        width: 100px;
+    }
+
+    .language-menu li {
+        padding: 6px;
+        font-size: 8px;
+    }
+
+    /* Контейнер для правых элементов */
+    .header-right {
+        gap: 15px; /* Расстояние между кнопкой и переключателем языка */
+    }
+
 }

@@ -9,10 +9,18 @@
     --hashtag-hover-bg: #333333;
     --font-family: 'Chakra Petch', sans-serif;
 
-    --content-max-width: 534px;
+    --content-max-width: max-content;
     --gap-size: 10px;
     --hashtag-padding: 8px 16px;
     --arrow-size: 50px;
+
+    --h1-width: fit-content; /* Начальное значение */
+    --p-width: 75%;
+}
+
+::selection {
+    background: transparent; 
+    color: #FF4E47; 
 }
 
 body, html {
@@ -24,11 +32,15 @@ body, html {
     font-family: var(--font-family);
 }
 
+main{
+    padding: 0 250px;
+}
+
 .page-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 250px);
+    height: auto;
     text-align: center;
     position: relative;
 }
@@ -45,26 +57,45 @@ body, html {
     display: flex;
     align-items: center;
     gap: 60px;
+    max-height: auto;
 }
 
-/* Изображение */
+img{
+    max-height: fit-content;
+    max-width: fit-content; 
+}
+
+.phone-img {
+    position: relative;
+    width: 100%; 
+    max-height: fit-content;
+    max-width: fit-content; 
+    overflow: hidden;
+    
+}
+
 .phone-img img {
-    height: auto;
+    width: auto; 
+    height: auto; 
+    clip: auto;
+    object-position: center; 
     clip-path: inset(0 0 5px 0);
 }
+
 
 /* Основной контент */
 .main-content {
     text-align: left;
-    max-width: var(--content-max-width);
+    width: fit-content; /* Автоматическая ширина по самому длинному элементу */
+    max-width: 100%; /* Ограничиваем ширину для предотвращения выхода за пределы экрана */
+    margin: 0 auto; /* Центрируем блок */
 }
 
 .main-content h2 {
     width: fit-content;
     padding: 5px 30px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid #FFCE00;
     background-color: var(--primary-bg);
-    color: var(--primary-color);
     font-size: 15px;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -72,17 +103,21 @@ body, html {
 
 .main-content h1 {
     font-size: 44px;
-    color: var(--primary-color);
     line-height: 1.3;
     font-style: italic;
     margin-bottom: 15px;
+    max-width: var(--h1-width); /* Контролируем ширину h1 */
+}
+
+.main-content .yellow{
+    color: #FFCE00;
 }
 
 .main-content p {
     font-size: 22px;
     color: var(--text-color);
     margin-bottom: 25px;
-    width: 450px;
+    max-width: var(--p-width); /* Ширина p на основе h1 */
 }
 
 .main-content .hashtags {
@@ -91,7 +126,6 @@ body, html {
     gap: var(--gap-size);
     width: 316px;
     height: 97px;
-
 }
 
 .main-content .hashtags p {
@@ -114,13 +148,13 @@ body, html {
 
 /* Зеленый вариант */
 .main-content .green {
-    border-color: var(--secondary-color);
-    background-color: var(--secondary-bg);
-    color: var(--secondary-color);
+    border-color: #1FEB85;
+    background-color:#1feb852c;
+    color: #1FEB85;
 }
 
 .main-content h1.green {
-    color: var(--secondary-color);
+    color: #1FEB85;
     background-color: transparent;
 }
 
@@ -159,24 +193,100 @@ body, html {
     filter: brightness(10); /* Увеличиваем яркость изображения */
 }
 
-@media (max-width: 768px) {
-    .profile-content {
-        flex-direction: column;
-        gap: var(--gap-size);
+/* Отступы и расположение стрелок для ширины экрана 1720px */
+@media (max-width: 1720px) {
+
+    .phone-img img {
+        transform: scale(0.9); /* Уменьшение на 25% для этой ширины экрана */
+        object-fit: cover;
     }
 
-    .main-content h1 {
-        font-size: 36px;
+    .page-container {
+        height: calc(100vh - 300px);
     }
 
-    .main-content p {
-        font-size: 18px;
-        width: 100%;
+    .main-content {
+        max-width: 30%; /* Уменьшаем ширину для мобильных устройств */
     }
 
-    .main-content .hashtags {
-        width: 100%;
-        height: auto;
+    .arrow-container {
+        display: flex;
         justify-content: center;
+        gap: 50px; /* Расстояние между стрелками */
+        margin-top: 10px; /* Отступ сверху от контента */
     }
+
+    .arrow {
+        position: static;
+        margin: 0; /* Убираем лишние отступы у стрелок */
+    }
+
+
 }
+
+@media (max-width: 1269px) {
+
+    .phone-img img {
+        transform: scale(0.75); /* Уменьшение на 25% для этой ширины экрана */
+        object-fit: cover;
+    }
+
+    .page-container {
+        height: calc(100vh - 300px);
+    }
+
+    .arrow-container {
+        display: flex;
+        justify-content: center;
+        gap: 50px; /* Расстояние между стрелками */
+        margin-top: 0px; /* Отступ сверху от контента */
+    }
+
+    .arrow {
+        position: static;
+        margin: 0; /* Убираем лишние отступы у стрелок */
+    }
+
+
+}
+
+@media (max-width: 1190px) {
+
+
+}
+
+
+/* Адаптивная версия для мобильных устройств */
+@media (max-width: 768px) {
+
+
+    .arrow-container {
+        display: flex;
+        justify-content: center;
+        gap: 50px; /* Расстояние между стрелками */
+        margin-top: 0px; /* Отступ сверху от контента */
+    }
+
+    .arrow {
+        position: static;
+        margin: 0; /* Убираем лишние отступы у стрелок */
+    }
+
+}
+
+@media (max-width: 520px) {
+
+    .arrow-container {
+        display: flex;
+        justify-content: center;
+        gap: 50px; /* Расстояние между стрелками */
+        margin-top: 0px; /* Отступ сверху от контента */
+    }
+
+    .arrow {
+        position: static;
+        margin: 0; /* Убираем лишние отступы у стрелок */
+    }
+
+}
+

@@ -313,8 +313,93 @@ main {
     .progress-bar {
         max-width: 100%;
     }
+
+    .centered-text .welcome {
+        font-weight: 600;
+        font-style: italic;
+        color: transparent;
+        -webkit-text-stroke: 2px #ffffff;
+        line-height: 60px;
+        letter-spacing: -3px;
+        transition: all 0.2s;
+    }
+    
+    .centered-text .title {
+        color: #070306;
+        text-shadow: 0px 0px 16px rgba(255, 206, 0, 1);
+        -webkit-text-stroke: 2px #FFCE00;
+        line-height: 128%;
+    }
+
+        /* Контейнер для кнопки */
+    .cta-button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute; 
+        top: 100%;
+        margin-top: 20px; 
+        width: 80%;
+    }
+
+    .get-the-quest {
+        width: 220px;
+        height: 38px;
+        background: url(/static/img/button-default.svg) center no-repeat;
+        background-size: contain;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
 }
 
+/* Адаптивность */
+@media (max-width: 600px) {
+    
+    :root {
+        --font-size-large: 35px;
+        --font-size-title: 50px;
+    }
 
+    .centered-text .welcome {
+        font-weight: 600;
+        font-style: italic;
+        color: #ffffff;
+        -webkit-text-stroke: 0px #ffffff;
+        line-height: 46px;
+        letter-spacing: -3px;
+        transition: all 0.2s;
+    }
+    
+    .centered-text .title {
+        color: #070306;
+        text-shadow: 0px 0px 16px rgba(255, 206, 0, 1);
+        -webkit-text-stroke: 0px;
+        color: #FFCE00;
+        line-height: 128%;
+    }
 
+    /* Контейнер для кнопки */
+    .cta-button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute; 
+        top: 100%;
+        margin-top: 10px; 
+        width: 60%;
+    }
+
+    .get-the-quest {
+        width: 220px;
+        height: 38px;
+        background: url(/static/img/button-default.svg) center no-repeat;
+        background-size: contain;
+        border: none;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+
+}
 

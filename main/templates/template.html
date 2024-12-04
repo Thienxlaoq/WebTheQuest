@@ -5,6 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0B0310">
   <meta name="description" content="Официальный сайт, посвященный The Quest.">
   <meta name="keywords" content="The Quest, game, AR game, Quests">
   <meta property="og:site_name" content="The Quest">
@@ -24,11 +25,9 @@
 
 <body>
     <header class="header {{ header_class }}">
-        
       <div class="logo">
           <a href="/map"><img src="/static/img/logoquest.png" alt="The Quest Logo"></a>
       </div>
-
       <div class="header-right">
           <div class="language-switch">
             <img src="/static/img/language-icon.svg" class="icon" alt="Language Icon">
@@ -117,6 +116,7 @@
 </div>
 
   <script src="{% static 'js/script.js' %}"></script>
+  <script src="{% static 'js/language-switch.js' %}"></script>
 
 </body>
 </html>

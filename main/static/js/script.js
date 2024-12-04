@@ -79,40 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         animateProgress();
     }
-
-    // Инициализация переключателя языка
-    function initLanguageSwitch() {
-        const languageSwitch = document.querySelector('.language-switch');
-        const languageMenu = document.querySelector('.language-menu');
-        const arrowIcon = languageSwitch?.querySelector('.arrow-icon');
-
-        if (!languageSwitch || !languageMenu) {
-            console.warn('Language switch or menu not found.');
-            return;
-        }
-
-        languageSwitch.addEventListener('click', (event) => {
-            event.stopPropagation();
-            languageMenu.classList.toggle('language-menu-active');
-            arrowIcon?.classList.toggle('arrow-rotated');
-        });
-
-        languageMenu.addEventListener('click', (event) => {
-            if (event.target.tagName === 'LI') {
-                const selectedLanguage = event.target.getAttribute('data-lang');
-                console.log(`Selected language: ${selectedLanguage}`);
-                languageMenu.classList.remove('language-menu-active');
-                arrowIcon?.classList.remove('arrow-rotated');
-            }
-        });
-
-        document.addEventListener('click', () => {
-            languageMenu.classList.remove('language-menu-active');
-            arrowIcon?.classList.remove('arrow-rotated');
-        });
-    }
-
-    initLanguageSwitch();
 });
 
 
