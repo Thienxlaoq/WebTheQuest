@@ -107,6 +107,7 @@ main {
     width: 380px;
     height: 68px;
     background: url(/static/img/button-default.svg) no-repeat;
+    object-fit: contain;
     border: none;
     cursor: pointer;
     transition: all 0.3s;
@@ -116,6 +117,7 @@ main {
     width: 380px;
     height: 68px;
     background: url(/static/img/button-hover.svg) center no-repeat;
+    object-fit: contain;
 }
 
 /* privacy-policy */
@@ -376,12 +378,6 @@ main {
         line-height: 50px;
     }
 
-
-    .cta-button-container .get-the-quest {
-        width: 300px;
-        height: 56px;
-    }
-
     .privacy-policy {
         font-size: 14px;
         padding: 0 50px;
@@ -403,24 +399,24 @@ main {
         line-height: 128%;
     }
 
-        /* Контейнер для кнопки */
     .cta-button-container {
         display: flex;
         justify-content: center;
         align-items: center;
         position: absolute; 
         top: 100%;
-        margin-top: 40px; 
+        margin-top: 25px; 
         width: 80%;
     }
 
     .get-the-quest {
-        width: 220px;
-        height: 38px;
+        width: 260px;
+        height: 50px;
         background: url(/static/img/button-default.svg) center no-repeat;
         background-size: contain;
         border: none;
         cursor: pointer;
+        transition: all 0.3s;
     }
 }
 
