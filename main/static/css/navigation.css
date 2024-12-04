@@ -52,6 +52,20 @@
 }
 
 
+@media (max-width: 600px) {
+
+    /* Navigation bar */
+    .navigation-bar {
+        bottom: 35px; 
+        width: 308px;
+        height: 60px;
+
+    }
+
+
+}
+
+
 
 
 

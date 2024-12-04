@@ -8,90 +8,80 @@
     --hashtag-bg: #1A1A1A;
     --hashtag-hover-bg: #333333;
     --font-family: 'Chakra Petch', sans-serif;
-
-    --content-max-width: max-content;
     --gap-size: 10px;
     --hashtag-padding: 8px 16px;
-    --arrow-size: 50px;
 
-    --h1-width: fit-content; /* Начальное значение */
-    --p-width: 75%;
-}
-
-::selection {
-    background: transparent; 
-    color: #FF4E47; 
+    --p-width: 95%;
 }
 
 body, html {
     background-color: var(--background-color);
     margin: 0;
     padding: 0;
-    height: 100vh;
-    overflow-x: hidden;
     font-family: var(--font-family);
 }
 
-main{
-    padding: 0 250px;
+
+.scroll-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 100px; /* Отступ между блоками */
+    padding: 100px 250px 200px 250px;
+    align-items: center;
 }
 
-.page-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: auto;
-    text-align: center;
-    position: relative;
+.scroll-arrow {
+    position: absolute; /* Абсолютное позиционирование внутри scroll-container */
+    right: 10%; /* Расстояние от правого края */
+    top: 45%; /* Центрирование по высоте */
+    transform: translateY(-50%); /* Коррекция для точного центрирования */
+    z-index: 10; /* Поверх контента */
+    pointer-events: none; /* Чтобы элемент не мешал взаимодействию с контентом */
+}
+
+.scroll-arrow img {
+    height: auto; /* Высота стрелки */
+    width: auto;
+    opacity: 0.5;
+    animation: bounce 1.5s infinite; /* Анимация для привлечения внимания */
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(-50%);
+    }
+    50% {
+        transform: translateY(calc(-50% + 10px)); /* Лёгкий прыжок вниз */
+    }
 }
 
 .block {
-    display: none;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
 }
 
-.block.active {
+.content-container {
     display: flex;
-}
-
-.profile-content {
-    display: flex;
+    gap: 30px;
     align-items: center;
-    gap: 60px;
-    max-height: auto;
 }
 
-img{
-    max-height: fit-content;
-    max-width: fit-content; 
+.image-container img {
+    max-width: 100%;
+    height: fit-content;
+    border-radius: 10px;
 }
 
-.phone-img {
-    position: relative;
-    width: 100%; 
-    max-height: fit-content;
-    max-width: fit-content; 
-    overflow: hidden;
-    
+.text-container {
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+    max-width: 400px;
 }
 
-.phone-img img {
-    width: auto; 
-    height: auto; 
-    clip: auto;
-    object-position: center; 
-    clip-path: inset(0 0 5px 0);
-}
-
-
-/* Основной контент */
-.main-content {
-    text-align: left;
-    width: fit-content; /* Автоматическая ширина по самому длинному элементу */
-    max-width: 100%; /* Ограничиваем ширину для предотвращения выхода за пределы экрана */
-    margin: 0 auto; /* Центрируем блок */
-}
-
-.main-content h2 {
+.text-container h2 {
     width: fit-content;
     padding: 5px 30px;
     border: 1px solid #FFCE00;
@@ -101,26 +91,33 @@ img{
     margin-bottom: 20px;
 }
 
-.main-content h1 {
+.text-container h1 {
     font-size: 44px;
     line-height: 1.3;
     font-style: italic;
     margin-bottom: 15px;
-    max-width: var(--h1-width); /* Контролируем ширину h1 */
 }
 
-.main-content .yellow{
+h1{
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+
+
+.text-container .yellow{
     color: #FFCE00;
 }
 
-.main-content p {
+.text-container p {
     font-size: 22px;
     color: var(--text-color);
     margin-bottom: 25px;
     max-width: var(--p-width); /* Ширина p на основе h1 */
 }
 
-.main-content .hashtags {
+.text-container .hashtags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--gap-size);
@@ -128,7 +125,7 @@ img{
     height: 97px;
 }
 
-.main-content .hashtags p {
+.text-container .hashtags p {
     border: 1px solid var(--hashtag-bg);
     background-color: var(--hashtag-bg);
     width: auto;
@@ -142,151 +139,102 @@ img{
     transition: background-color 0.3s;
 }
 
-.main-content .hashtags p:hover {
+.text-container .hashtags p:hover {
     background-color: var(--hashtag-hover-bg);
 }
 
 /* Зеленый вариант */
-.main-content .green {
+.text-container .green {
     border-color: #1FEB85;
     background-color:#1feb852c;
     color: #1FEB85;
 }
 
-.main-content h1.green {
+.text-container h1.green {
     color: #1FEB85;
     background-color: transparent;
 }
 
-/* Стрелки */
-.arrow {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    z-index: 10;
-}
-
-.left-arrow {
-    left: 250px;
-    padding: 0;
-    margin: 0;
-}
-
-.right-arrow {
-    right: 250px;
-    padding: 0;
-    margin: 0;
-}
-
-.arrow img {
-    width: var(--arrow-size);
-    height: var(--arrow-size);
-    transition: filter 0.3s ease; /* плавный переход для изображения */
-}
-
-.arrow:hover img {
-    filter: brightness(10); /* Увеличиваем яркость изображения */
-}
-
-/* Отступы и расположение стрелок для ширины экрана 1720px */
-@media (max-width: 1720px) {
-
-    .phone-img img {
-        transform: scale(0.9); /* Уменьшение на 25% для этой ширины экрана */
-        object-fit: cover;
-    }
-
-    .page-container {
-        height: calc(100vh - 300px);
-    }
-
-    .main-content {
-        max-width: 30%; /* Уменьшаем ширину для мобильных устройств */
-    }
-
-    .arrow-container {
-        display: flex;
-        justify-content: center;
-        gap: 50px; /* Расстояние между стрелками */
-        margin-top: 10px; /* Отступ сверху от контента */
-    }
-
-    .arrow {
-        position: static;
-        margin: 0; /* Убираем лишние отступы у стрелок */
-    }
-
-
-}
-
-@media (max-width: 1269px) {
-
-    .phone-img img {
-        transform: scale(0.75); /* Уменьшение на 25% для этой ширины экрана */
-        object-fit: cover;
-    }
-
-    .page-container {
-        height: calc(100vh - 300px);
-    }
-
-    .arrow-container {
-        display: flex;
-        justify-content: center;
-        gap: 50px; /* Расстояние между стрелками */
-        margin-top: 0px; /* Отступ сверху от контента */
-    }
-
-    .arrow {
-        position: static;
-        margin: 0; /* Убираем лишние отступы у стрелок */
-    }
-
-
-}
-
-@media (max-width: 1190px) {
-
-
-}
-
-
 /* Адаптивная версия для мобильных устройств */
-@media (max-width: 768px) {
+@media (max-width: 1400px) {
 
+    .scroll-container{
+        padding: 100px 150px 200px 150px;
+    }
 
-    .arrow-container {
+    .image-container img {
+        max-width: 100% ; 
+    }
+
+    .text-container {
         display: flex;
-        justify-content: center;
-        gap: 50px; /* Расстояние между стрелками */
-        margin-top: 0px; /* Отступ сверху от контента */
+        flex-direction: column;
+        color: var(--text-color);
+        max-width: 500px;
     }
 
-    .arrow {
-        position: static;
-        margin: 0; /* Убираем лишние отступы у стрелок */
+    .scroll-arrow {
+        display: none;
+    }
+    
+}
+
+@media (max-width: 1200px) {
+
+    .scroll-container{
+        padding: 100px 100px 200px 100px;
     }
 
+    .text-container h2 {
+        width: fit-content;
+        padding: 5px 30px;
+        border: 1px solid #FFCE00;
+        background-color: var(--primary-bg);
+        font-size: 13px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+    }
+
+    .text-container h1 {
+        font-size: 36px;
+        line-height: 1.2;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .text-container p {
+        font-size: 18px;
+        color: var(--text-color);
+        margin-bottom: 25px;
+        max-width: var(--p-width); /* Ширина p на основе h1 */
+    }
+
+}
+
+@media (max-width:970px){
+    .content-container {
+        flex-direction: column; /* Элементы отображаются в столбик */
+        gap: 40px;
+    }
 }
 
 @media (max-width: 520px) {
 
-    .arrow-container {
+    .scroll-container {
+        position: relative;
         display: flex;
-        justify-content: center;
-        gap: 50px; /* Расстояние между стрелками */
-        margin-top: 0px; /* Отступ сверху от контента */
+        flex-direction: column;
+        gap: 100px; /* Отступ между блоками */
+        padding: 50px 25px 200px 25px;
+        align-items: center;
     }
 
-    .arrow {
-        position: static;
-        margin: 0; /* Убираем лишние отступы у стрелок */
+    .scroll-arrow {
+        display: none;
     }
 
+    .image-container img {
+        width: auto;
+        height: auto;
+    }
 }
-

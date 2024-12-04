@@ -31,8 +31,8 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 400px);
     text-align: center;
+    height: calc(100vh - 50%);
 }
 
 .centered-content {
@@ -113,25 +113,33 @@ main {
 }
 
 .get-the-quest:hover {
-    background: url(/static/img/button-hover.svg) no-repeat;
+    width: 220px;
+    height: 38px;
+    background: url(/static/img/button-hover.svg) center no-repeat;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
 }
 
 /* privacy-policy */
 
 .privacy-policy {
     width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: flex; /* Делаем контейнер горизонтально флекс-блоком */
+    justify-content: space-between; /* Размещаем элементы по краям */
+    align-items: center; /* Выравниваем элементы по вертикали */
     bottom: 45px;
     position: fixed;
     font-size: 16px;
     color: var(--color-text);
     font-weight: 400;
+    padding: 0 250px;
+    box-sizing: border-box; /* Учитываем padding в ширине контейнера */
 }
 
 .fixed-text-block {
-    padding-left: 250px;
+    display: flex; /* Если есть вложенные элементы, оставляем flex */
+    flex-direction: column; /* Размещаем элементы вертикально */
     gap: 15px;
     text-align: left;
     color: #7E7E7E;   
@@ -140,7 +148,6 @@ main {
 .fixed-text-block .first-text {
     color: var(--color-secondary);
     margin: 0px;
-    margin-bottom: 15px;
     font-size: 17px;
     font-weight: bold;
 }
@@ -155,7 +162,8 @@ main {
 }
 
 .privacy-block {
-    padding-right: 250px;
+    display: flex; /* Делаем ссылки внутри горизонтальными */
+    gap: 30px; /* Расстояние между ссылками */
 }
 
 .second-text a{
@@ -166,7 +174,6 @@ main {
 
 .privacy-block a{
     color: var(--color-text);
-    padding-left: 30px;
 }
 
 .privacy-block a:hover {
@@ -287,11 +294,91 @@ main {
 }
 
 /* Адаптивность */
-@media (max-width: 768px) {
+
+@media (max-width: 1500px) {
+
+    .privacy-policy{
+        bottom: 55px;
+        font-size: 13px;
+    }
+
+    .fixed-text-block .first-text {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 1400px) {
+
+    .privacy-policy{
+        bottom: 55px;
+        font-size: 13px;
+        padding: 0 150px;
+    }
+
+    .fixed-text-block .first-text {
+        font-size: 15px;
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+    .privacy-policy{
+        bottom: 55px;
+        font-size: 13px;
+        padding: 0 100px;
+    }
+
+}
+
+@media (max-width: 1200px) {
+
+    :root {
+        --font-size-large: 68px;
+        --font-size-title: 104px;
+    }
+
+    .centered-text .welcome {
+        line-height: 70px;
+    }
+
+    .cta-button-container {
+        margin-top: 45px; 
+    }
+
+    .privacy-policy{
+        bottom: 55px;
+        font-size: 13px;
+        padding: 0 100px;
+    }
+
+}
+
+@media (max-width: 840px) {
+
     :root {
         --font-size-large: 64px;
         --font-size-title: 96px;
     }
+
+    .cta-button-container {
+        margin-top: 35px; 
+    }
+
+}
+
+
+
+@media (max-width: 760px) {
+    :root {
+        --font-size-large: 48px;
+        --font-size-title: 80px;
+    }
+
+    .centered-text .welcome {
+        line-height: 50px;
+    }
+
 
     .cta-button-container .get-the-quest {
         width: 300px;
@@ -299,10 +386,8 @@ main {
     }
 
     .privacy-policy {
-        flex-direction: column;
-        gap: 15px;
-        padding: 10px;
         font-size: 14px;
+        padding: 0 50px;
     }
 
     .modal-content {
@@ -312,16 +397,6 @@ main {
 
     .progress-bar {
         max-width: 100%;
-    }
-
-    .centered-text .welcome {
-        font-weight: 600;
-        font-style: italic;
-        color: transparent;
-        -webkit-text-stroke: 2px #ffffff;
-        line-height: 60px;
-        letter-spacing: -3px;
-        transition: all 0.2s;
     }
     
     .centered-text .title {
@@ -338,7 +413,7 @@ main {
         align-items: center;
         position: absolute; 
         top: 100%;
-        margin-top: 20px; 
+        margin-top: 40px; 
         width: 80%;
     }
 
@@ -349,7 +424,6 @@ main {
         background-size: contain;
         border: none;
         cursor: pointer;
-        transition: all 0.3s;
     }
 }
 
@@ -379,6 +453,16 @@ main {
         line-height: 128%;
     }
 
+    .title::before {
+        content: '«';
+        margin-right: 5px; 
+    }
+    
+    .title::after {
+        content: '»';
+        margin-left: 5px;
+    }
+
     /* Контейнер для кнопки */
     .cta-button-container {
         display: flex;
@@ -399,6 +483,7 @@ main {
         cursor: pointer;
         transition: all 0.3s;
     }
+    
     
 
 }

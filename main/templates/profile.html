@@ -11,19 +11,24 @@
 {% endblock %}
 
 {% block body %}
-<main>
+<main class="scroll-container">
 
-  <div class="main-container">
+
+  <div class="scroll-arrow">
+    <img src="{% static 'img/arrow-down.png' %}" alt="Scroll down arrow">
+  </div>
+
+  
   <!-- Блок QUESTS -->
-  <div class="page-container block active quests">
-    <div class="profile-content">
-      <div class="phone-img">
+  <div class="block quests">
+    <div class="content-container">
+      <div class="image-container">
         <img src="{% static 'img/BlockPhonewithmap.png' %}" alt="Phone displaying map">
       </div>
-      <div class="main-content">
+      <div class="text-container">
         <h2 class="yellow">QUESTS</h2>
         <h1 class="yellow">Quests around the world!</h1>
-        <p>Lorem Ipsum has been the industry's standard dummy text since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type ...</p>
+        <p>Lorem Ipsum has been the industry's standard dummy text since the 1500s, when an unknown printer took a galley of type and scrambled it...</p>
         <div class="hashtags">
           <p>Physical activity</p>
           <p>Worldwide</p>
@@ -34,12 +39,9 @@
   </div>
 
   <!-- Блок FRIENDS -->
-  <div class="page-container block friends">
-    <div class="profile-content">
-      <div class="phone-img">
-        <img src="{% static 'img/blockplaywithfriends.png' %}" alt="People playing together">
-      </div>
-      <div class="main-content">
+  <div class="block friends">
+    <div class="content-container">
+      <div class="text-container">
         <h2 class="green">FRIENDS</h2>
         <h1 class="green">Meet with friends and play together!</h1>
         <p>Discover the secrets and hidden places you never knew existed. Join others in exciting quests for unforgettable experiences...</p>
@@ -49,20 +51,11 @@
           <p>Discovery</p>
         </div>
       </div>
+      <div class="image-container">
+        <img src="{% static 'img/blockplaywithfriends.png' %}" alt="People playing together">
+      </div>
     </div>
   </div>
-</div>
-
-  <!-- Правая стрелка -->
-  <div class="arrow-container">
-    <button class="arrow left-arrow">
-      <img src="{% static 'img/button-left.png' %}" alt="Left Arrow">
-    </button>
-    <button class="arrow right-arrow">
-      <img src="{% static 'img/button-right.png' %}" alt="Right Arrow">
-    </button>
-  </div>
-
 </main>
 
 <script src="{% static 'js/profile.js' %}"></script>
