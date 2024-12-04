@@ -113,12 +113,9 @@ main {
 }
 
 .get-the-quest:hover {
-    width: 220px;
-    height: 38px;
+    width: 380px;
+    height: 68px;
     background: url(/static/img/button-hover.svg) center no-repeat;
-    background-size: contain;
-    border: none;
-    cursor: pointer;
 }
 
 /* privacy-policy */
