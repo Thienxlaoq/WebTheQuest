@@ -181,6 +181,7 @@ main {
 
 /* GOT THE QUEST */
 
+/* Базовые стили для модального окна */
 .modal {
     display: flex;
     align-items: center;
@@ -192,32 +193,43 @@ main {
     height: 100%;
     background-color: var(--color-overlay);
     z-index: 11;
+    padding: 20px; /* Отступы, чтобы модальное окно не прижималось к краям экрана */
+    box-sizing: border-box;
 }
 
 #overlaytwo #content-block {
-    padding-top: 50px;
-    position: fixed;
-    width: 700px;
-    height: 650px;
-    max-width: 90%; /* чтобы блок не выходил за пределы экрана на маленьких устройствах */
+    padding: 50px;
+    position: relative; /* Используем relative для управления внутренними элементами */
+    width: 600px; /* Базовая ширина для больших экранов */
+    height: auto; /* Высота адаптируется к содержимому */
+    max-width: 90%; /* Чтобы блок не выходил за пределы экрана */
+    max-height: 90%; /* Чтобы блок не занимал больше 90% экрана по высоте */
     background-color: rgb(13, 13, 13);
     display: flex;
     flex-direction: column;
-    border: 1px solid #2F2F2F; /* Рамка толщиной 1px с нужным цветом */
-    box-sizing: border-box; /* Учет рамки в размерах блока */
+    border: 1px solid #2F2F2F;
     border-radius: 10px;
+    box-sizing: border-box;
+    overflow-y: auto; /* Включаем вертикальную прокрутку, если содержимого слишком много */
 }
 
 #overlaytwo #close-block-two {
     position: absolute;
-    top: 20px; 
-    right: 20px; 
-    width: 30px; 
-    height: 30px;
-    background-color: transparent; 
+    top: 15px;
+    right: 15px;
+    width: 25px; /* Уменьшенные размеры для маленьких экранов */
+    height: 25px;
+    background-color: transparent;
     border: none;
-    padding: 0;
     cursor: pointer;
+    padding: 0;
+    z-index: 3;
+}
+
+#close-block-two{
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
 }
 
 #overlaytwo #block {
@@ -228,70 +240,84 @@ main {
 }
 
 #overlaytwo #main-text {
-    margin: 20px 0 0 0;
+    margin: 10px 0;
     padding: 0;
+    text-align: center;
 }
-#overlaytwo #main-text p{
-    font-size: 48px;
+
+#overlaytwo #main-text p {
+    font-size: 42px;
     font-weight: bold;
-    -webkit-text-stroke: 2px var(--color-primary);
-    color: transparent ;
+    -webkit-text-stroke: 1px var(--color-primary);
+    color: #FFCE00;
 }
 
-#overlaytwo #description p{
-    font-size: 18px;
+#overlaytwo #description p {
+    font-size: 16px;
     color: #747474;
-    margin:0;
+    margin: 10px 0;
+    text-align: center;
 }
 
-#overlaytwo #description b{
-    font-size: 18px;
+#overlaytwo #description b {
+    font-size: 16px;
     color: #ffffff;
-    line-height: 35px;
+    line-height: 24px;
 }
 
-#overlaytwo #description a{
-    font-size: 18px;
+#overlaytwo #description a {
+    font-size: 16px;
     color: #747474;
 }
-#overlaytwo #description a:hover{
+
+#overlaytwo #description a:hover {
     color: var(--color-primary);
 }
 
-#overlaytwo #description strong{
+#overlaytwo #description strong {
     color: var(--color-primary);
 }
 
 #overlaytwo #chill-man {
-    margin-bottom: 35px;
-    margin-top:50px;
+    margin: 20px 0;
+    max-width: 100%;
+    height: auto; /* Сохраняем пропорции изображения */
 }
+
+#overlaytwo #chill-man img {
+    max-width: 100%; /* Изображение не выходит за границы контейнера */
+    height: auto; /* Сохраняем пропорции изображения */
+    display: block; /* Убираем лишние отступы */
+    margin: 0 auto; /* Центрируем изображение */
+}
+
 
 #loading {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 20px;
+    width: 100%; /* Устанавливаем ширину загрузочной полосы */
 }
 
 .progress-bar {
-    width: 420px; /* Ширина прогресс-бара */
-    height: 4px; /* Высота прогресс-бара */
-    background-color: transparent; /* Цвет фона */
-    outline: 1px solid var(--color-primary); /* Рамка */
-    outline-offset:5px;
-    overflow: hidden; /* Скрываем содержимое за границей */
+    width: 100%; /* Адаптивная ширина */
+    max-width: 420px; /* Ограничиваем максимальную ширину */
+    height: 4px;
+    background-color: transparent;
+    outline: 1px solid var(--color-primary);
+    outline-offset: 5px;
+    overflow: hidden;
     position: relative;
 }
 
 .progress {
-    position: absolute; /* Позволяет двигаться за пределы контейнера */
-    width: 100%; /* Начальная ширина заполнения */
+    position: absolute;
+    width: 100%;
     height: 100%;
-    background-color: var(--color-primary); /* Цвет заполнения */
-    transition: width 2s linear; /* Анимация плавного заполнения */
+    background-color: var(--color-primary);
+    transition: width 2s linear;
 }
-
 /* Адаптивность */
 
 @media (max-width: 1500px) {
@@ -322,16 +348,6 @@ main {
 
 @media (max-width: 1200px) {
 
-    .privacy-policy{
-        bottom: 55px;
-        font-size: 13px;
-        padding: 0 100px;
-    }
-
-}
-
-@media (max-width: 1200px) {
-
     :root {
         --font-size-large: 68px;
         --font-size-title: 104px;
@@ -346,9 +362,31 @@ main {
     }
 
     .privacy-policy{
-        bottom: 55px;
-        font-size: 13px;
         padding: 0 100px;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .privacy-policy {
+        font-size: 10px;
+        bottom: 100px;
+    }    
+
+    .fixed-text-block {
+        flex-direction: column; /* Размещаем элементы вертикально */
+        gap: 6px;
+        text-align: left;
+        color: #7E7E7E;   
+        letter-spacing: -0.1px;
+    }
+    
+    .fixed-text-block .first-text {
+        color: var(--color-secondary);
+        margin: 0px;
+        font-size: 12px;
+        font-weight: bold;
     }
 
 }
@@ -367,7 +405,6 @@ main {
 }
 
 
-
 @media (max-width: 760px) {
     :root {
         --font-size-large: 48px;
@@ -379,8 +416,35 @@ main {
     }
 
     .privacy-policy {
-        font-size: 14px;
         padding: 0 50px;
+    }
+
+    .privacy-policy {
+        bottom: 115px;
+        font-size: 10px;
+    }
+    
+    .fixed-text-block {
+        flex-direction: column; /* Размещаем элементы вертикально */
+        gap: 6px;
+        text-align: left;
+        color: #7E7E7E;   
+        letter-spacing: -0.1px;
+    }
+    
+    .fixed-text-block .first-text {
+        color: var(--color-secondary);
+        margin: 0px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    
+    .privacy-block {
+        display: flex; 
+        align-items: right; 
+        text-align: right;
+        flex-direction: column; 
+        gap: 15px; 
     }
 
     .modal-content {
@@ -477,7 +541,55 @@ main {
         transition: all 0.3s;
     }
     
-    
+    .privacy-policy {
+        padding: 0 30px;
+    }
 
 }
 
+@media (max-width: 500px) {
+
+    #overlaytwo #content-block {
+        padding: 25px;
+        width: 600px; /* Базовая ширина для больших экранов */
+        height: auto; /* Высота адаптируется к содержимому */
+        max-width: 90%; /* Чтобы блок не выходил за пределы экрана */
+        max-height: 90%; /* Чтобы блок не занимал больше 90% экрана по высоте */
+    }
+    
+    #overlaytwo #main-text p {
+        font-size: 22px;
+        font-weight: bold;
+        -webkit-text-stroke: 0;
+        color: #FFCE00;
+    }
+    
+    #overlaytwo #description p {
+        font-size: 10px;
+        color: #747474;
+        margin: 0;
+        text-align: center;
+    }
+    
+    #overlaytwo #description b {
+        font-size: 10px;
+        color: #ffffff;
+        line-height: 16px;
+    }
+    
+    #overlaytwo #description a {
+        font-size: 10px;
+        color: #747474;
+    }
+
+    #loading {
+        margin-top: 10px;
+    }
+    
+    .progress-bar {
+        height: 2px;
+        outline: 0px solid var(--color-primary);
+        outline-offset: 0px;
+    }
+
+}

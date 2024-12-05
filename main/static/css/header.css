@@ -396,11 +396,11 @@
 
     .header {
         padding: 0px 25px; 
-        margin-top: 25px;
+        margin-top: 20px;
     }
 
     .header .logo img {
-        max-height: 34px; /* Размер логотипа */
+        max-height: 40px; /* Размер логотипа */
     }
 
     .our-socials-btn {
