@@ -150,10 +150,10 @@
 
 #content-block {
     position: fixed;
-    width: 80%; /* Уменьшаем ширину на мобильных */
+    width: 80%; 
     max-width: 950px;
-    height: auto; /* Делаем высоту адаптивной */
-    background-color: rgb(0, 0, 0); /* Фон */
+    height: auto; 
+    background-color: rgb(0, 0, 0); 
     z-index: 2;
     border: 1px solid #2F2F2F;
     box-sizing: border-box;
@@ -163,7 +163,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    overflow-y: auto; /* Прокрутка для длинного содержимого */
+    overflow-y: auto; 
 }
 
 
@@ -172,7 +172,7 @@
     top: 20px; 
     right: 20px; 
     width: 30px; 
-    height: 30px;
+    height: 30px; 
     background-color: transparent; 
     border: none;
     cursor: pointer;
@@ -180,9 +180,14 @@
     z-index: 3;
 }
 
+#close-block img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+}
+
 #block {
     width: 100%; 
-    max-width: 750px; 
     text-align: center;
 }
 
@@ -206,8 +211,6 @@
 
 #socials {
     display: flex;
-    width: 100%;
-    max-width: 100%; 
     justify-content: center; 
     gap: 5px; 
 }
@@ -216,47 +219,25 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    width: fit-content; 
+    width: 150px; 
     height: auto;
-    aspect-ratio: 1 / 1; 
     overflow: hidden; 
-    transition: height 0.3s ease; 
 }
 
 .social-img {
     width: 100%; 
-    height: 100%; 
+    height: auto;
     object-fit: contain; 
-    position: absolute; 
-    top: 0;
-    left: 0;
-    transition: opacity 0.3s ease;
+    filter: grayscale(100%); 
+    transition: filter 0.3s ease, transform 0.3s ease; 
 }
 
-.social-item .hover {
-    opacity: 0;
+.social-item:hover .social-img {
+    filter: grayscale(0%); 
+    transform: scale(1.1); 
 }
 
-.social-item:hover .normal {
-    opacity: 0;
-}
-
-.social-item:hover .hover {
-    opacity: 1;
-}
-
-
-#socials a{
-    width: 150px;
-    height: 350px;
-}
-
-#socials a img {
-    width: 100%; 
-    height: auto; 
-    object-fit: contain;
-}
+/* CONTACT BLOCK */
 
 #contact {
     display: flex;
@@ -269,14 +250,16 @@
 
 #line {
     width: 210px;
-    border: none; /* Убираем стандартные границы */
-    border-top: 1px solid #4B4B4B; /* Линия */
-    margin: 0 10px; /* Отступы между линией и текстом */
+    border: none; 
+    border-top: 1px solid #4B4B4B; 
+    margin: 0 10px; 
 }
 
 #text {
-    white-space: nowrap; /* Запрет на перенос текста */
+    white-space: nowrap; 
 }
+
+/* SEND MESSAGE BUTTON */
 
 #send-msg {
     display: flex;
@@ -294,6 +277,8 @@
     font-weight: bold;
     cursor: pointer;
 }
+
+
 
 @media (max-width: 1400px) {
 
@@ -358,6 +343,50 @@
     /* Контейнер для правых элементов */
     .header-right {
         gap: 15px; /* Расстояние между кнопкой и переключателем языка */
+    }
+
+
+    #content-block {
+        padding: 25px;
+    }
+
+    #main-text p{
+        font-size: 32px; 
+    }
+
+    #contact {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: #4B4B4B;
+    }
+    
+    #line {
+        width: 170px;
+        border: none; /* Убираем стандартные границы */
+        border-top: 1px solid #4B4B4B; /* Линия */
+        margin: 0 10px; /* Отступы между линией и текстом */
+    }
+    
+    #text {
+        font-size: 12px;
+    }
+    
+    #send-btn {
+        width: 180px;
+        height: 35px;
+        color: #111;
+        font-size: 14px;
+    }
+
+    #close-block {
+        width: 15px; 
+        height: 15px; 
+    }
+    
+    #close-block img {
+        width: 100%; 
+        height: 100%; 
+        object-fit: contain; 
     }
 
 }
