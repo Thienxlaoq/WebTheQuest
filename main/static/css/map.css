@@ -32,7 +32,7 @@ main {
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: calc(100vh - 50%);
+    height: calc(100vh - 45%);
 }
 
 .centered-content {
@@ -482,6 +482,13 @@ main {
         cursor: pointer;
         transition: all 0.3s;
     }
+
+    .get-the-quest:hover {
+        background: url(/static/img/button-hover.svg) center no-repeat;
+        background-size: contain;
+        width: 260px; /* Убедитесь, что размеры совпадают */
+        height: 50px; /* Убедитесь, что размеры совпадают */
+    }
 }
 
 /* Адаптивность */
@@ -520,17 +527,6 @@ main {
         margin-left: 5px;
     }
 
-    /* Контейнер для кнопки */
-    .cta-button-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute; 
-        top: 100%;
-        margin-top: 10px; 
-        width: 60%;
-    }
-
     .get-the-quest {
         width: 220px;
         height: 38px;
@@ -539,6 +535,13 @@ main {
         border: none;
         cursor: pointer;
         transition: all 0.3s;
+    }
+
+    .get-the-quest:hover {
+        background: url(/static/img/button-hover.svg) center no-repeat;
+        background-size: contain;
+        width: 220px; /* Убедитесь, что размеры совпадают */
+        height: 38px; /* Убедитесь, что размеры совпадают */
     }
     
     .privacy-policy {
