@@ -192,9 +192,13 @@ main {
     width: 100%;
     height: 100%;
     background-color: var(--color-overlay);
-    z-index: 11;
+    z-index: 9998;
     padding: 20px; /* Отступы, чтобы модальное окно не прижималось к краям экрана */
     box-sizing: border-box;
+}
+
+#overlaytwo {
+    z-index: 9998; /* Больше, чтобы быть выше */
 }
 
 #overlaytwo #content-block {
@@ -211,6 +215,7 @@ main {
     border-radius: 10px;
     box-sizing: border-box;
     overflow-y: auto; /* Включаем вертикальную прокрутку, если содержимого слишком много */
+    z-index: 9999;
 }
 
 #overlaytwo #close-block-two {

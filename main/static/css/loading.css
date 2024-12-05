@@ -1,43 +1,45 @@
 /* Основные стили для страницы загрузки */
 body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #000000;
-  }
-  
-  /* Контейнер для загрузки */
-  .loading-container {
-    text-align: center;
-  }
-  
-  /* Стили для логотипа */
-  .logo img {
-    max-width: 200px;
-    margin-bottom: 30px;
-  }
-  
-  /* Контейнер для кружков */
-  .loader {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  /* Стили для кружков */
-  .circle {
-    width: 15px;
-    height: 15px;
-    margin: 0 5px;
-    border-radius: 50%;
-    background-color: #9C9C9C; /* Цвет по умолчанию */
-  }
-  
-  /* Стили для активного кружка */
-  .circle.active {
-    background-color: #FFCE00; /* Цвет для активного кружка */
-  }
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000000;
+}
+
+/* Контейнер для загрузки */
+.loading-container {
+  text-align: center;
+}
+
+/* Стили для логотипа */
+.logo img {
+  max-width: fit-content;
+  margin-bottom: 30px;
+}
+
+/* Контейнер для кружков */
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Стили для кружков */
+.circle {
+  width: 15px;
+  height: 15px;
+  margin: 0 5px;
+  border-radius: 50%;
+  background-color: #9C9C9C; /* Цвет по умолчанию */
+  transition: background-color 0.5s ease-in-out; /* Плавное изменение цвета */
+}
+
+/* Стили для активного кружка */
+.circle.active {
+  background-color: #FFCE00; /* Цвет для активного кружка */
+}
+
   

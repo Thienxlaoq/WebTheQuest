@@ -61,7 +61,7 @@ ROOT_URLCONF = 'thequest.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'main/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,6 +130,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'main/static',  
 ]
+
+STATIC_ROOT = BASE_DIR / 'staticfiles' 
 
 # Медиа файлы (файлы, загружаемые пользователями)
 MEDIA_URL = '/media/'

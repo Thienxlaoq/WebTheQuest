@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', views.loading_page, name='loading_page'),  # Новый маршрут для загрузки
     path('map/', views.map, name='map'),
     path('info_center/', views.info_center, name='info_center'),
     path('profile/', views.profile, name='profile'),

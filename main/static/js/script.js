@@ -1,4 +1,3 @@
-// script.js
 document.addEventListener('DOMContentLoaded', () => {
     console.log('The Quest ready!');
 
@@ -14,11 +13,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         trigger.addEventListener('click', () => {
+            // Скрываем другие модальные окна
+            document.querySelectorAll('.modal').forEach((modalElem) => {
+                modalElem.style.display = 'none';
+                modalElem.style.zIndex = ''; // Сбрасываем z-index
+            });
+        
+            // Показываем текущее окно
             modal.style.display = 'flex';
+            modal.style.zIndex = '10001'; // Самый верхний слой
             if (typeof onOpenCallback === 'function') {
                 onOpenCallback();
             }
         });
+        
 
         closeButton.addEventListener('click', () => {
             modal.style.display = 'none';
@@ -39,48 +47,66 @@ document.addEventListener('DOMContentLoaded', () => {
 
     setupModal(
         'overlay',
-        '.our-socials-btn',
+        '.our-socials-btn', // Кнопка "OUR SOCIALS"
         '#close-block'
     );
 
     setupModal(
         'overlaytwo',
-        '.get-the-quest',
+        '.get-the-quest', // Кнопка "Get The Quest"
         '#close-block-two',
-        () => startProgressBar('progress')
+        () => startProgressBar('progress') // Коллбек для прогресс-бара
+    );
+
+    // Новый вызов для ссылки "social networks"
+    setupModal(
+        'overlay',
+        '#social-networks-link', // ID ссылки
+        '#close-block'
     );
 
     // Функция для прогресс-бара
-    function startProgressBar(progressId) {
-        const progressBar = document.getElementById(progressId);
+function startProgressBar(progressId) {
+    const progressBar = document.getElementById(progressId);
 
-        if (!progressBar) {
-            console.warn('Progress bar not found.');
-            return;
-        }
-
-        let position = -100; // Стартовая позиция за пределами слева
-        const progressBarWidth = 100; // Ширина полоски в процентах
-
-        const animateProgress = () => {
-            progressBar.style.transition = 'none';
-            progressBar.style.left = `${position}%`;
-
-            setTimeout(() => {
-                progressBar.style.transition = 'left 2s linear'; // Плавное движение
-                progressBar.style.left = `${100}%`; // Движение направо
-            }, 50);
-
-            setTimeout(() => {
-                position = -progressBarWidth; // Перезапуск с начальной позиции
-                animateProgress();
-            }, 2050); // Общая длительность движения
-        };
-
-        animateProgress();
+    if (!progressBar) {
+        console.warn('Progress bar not found.');
+        return;
     }
-});
 
+    // Проверяем, если анимация уже идёт
+    if (progressBar.dataset.isAnimating === 'true') {
+        console.log('Progress bar is already animating.');
+        return;
+    }
+
+    progressBar.dataset.isAnimating = 'true'; // Отмечаем, что анимация началась
+
+    let position = parseFloat(progressBar.dataset.position) || -100; // Сохраняем текущее положение
+    const progressBarWidth = 100; // Ширина полоски в процентах
+
+    const animateProgress = () => {
+        progressBar.style.transition = 'none';
+        progressBar.style.left = `${position}%`;
+
+        setTimeout(() => {
+            progressBar.style.transition = 'left 2s linear'; // Плавное движение
+            progressBar.style.left = `${100}%`; // Движение направо
+            position = 100; // Обновляем положение
+            progressBar.dataset.position = position; // Сохраняем позицию
+        }, 50);
+
+        setTimeout(() => {
+            position = -progressBarWidth; // Перезапуск с начальной позиции
+            progressBar.dataset.position = position; // Сохраняем начальную позицию
+            animateProgress();
+        }, 2050); // Общая длительность движения
+    };
+
+    animateProgress();
+}
+
+});
 
 
 

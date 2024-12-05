@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import News, Event, Update
 
 
@@ -41,3 +41,7 @@ def privacy_policy(request):
 
 def error_page(request, exception=None):
     return render(request, 'error_page.html', {'error': 'Страница не найдена'}, status=404)
+
+def loading_page(request):
+    # Отображение загрузочной страницы
+    return render(request, 'loading.html')
