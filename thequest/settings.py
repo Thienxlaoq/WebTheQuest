@@ -13,8 +13,8 @@ import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-580hrnvq_8n#avbgsp!=)x3luf-)@t!5dovn2c5qx2%80=*uh%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['thequest-72c3ecbb030c.herokuapp.com', 'localhost']
 
@@ -126,7 +126,8 @@ USE_TZ = True
 
 # Статические файлы (CSS, JS, изображения для интерфейса)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+STATIC_ROOT = BASE_DIR / 'static' 
 
 # Медиа файлы (файлы, загружаемые пользователями)
 MEDIA_URL = '/media/'
