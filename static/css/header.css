@@ -1,0 +1,438 @@
+:root {
+    --primary-color: #5EF6FF;
+    --background-dark: #222;
+    --text-light: #FFF;
+    --secondary-color: #FFCE00;
+    --font-family: 'Chakra Petch', sans-serif;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between; /* Элементы выравниваются по краям */
+    align-items: center;
+    padding: 0px 250px; /* Отступы слева и справа */
+    margin-top: 48px;
+    font-family: 'Chakra Petch', sans-serif;
+    color: #fff;
+    position: relative;
+    width: 100%;
+    z-index: 10; /* На переднем плане */
+    box-sizing: border-box;
+    transform: none !important;
+}
+
+
+/* Прозрачный хедер */
+.transparent-full-header {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Логотип */
+.header .logo img {
+    max-height: 70px; /* Размер логотипа */
+}
+
+/* Контейнер для правых элементов */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 30px; /* Расстояние между кнопкой и переключателем языка */
+}
+
+/* Переключение языка */
+.language-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px; 
+    font-weight: 500;
+    position: relative; /* Для корректного позиционирования меню */
+    cursor: pointer;
+}
+
+.language-switch .icon,
+.language-switch .arrow-icon {
+    width: 36px;
+    height: 36px;
+}
+
+.language-menu {
+    display: none; /* Меню скрыто по умолчанию */
+    position: absolute;
+    top: 100%; /* Меню располагается ниже переключателя */
+    right: 0;
+    background: var(--background-dark);
+    border-radius: 5px;
+    list-style: none;
+    z-index: 1000;
+    width: 175px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 0;
+    overflow: hidden; 
+}
+
+/* Активное меню (показать) */
+.language-menu.language-menu-active {
+    display: block;
+}
+
+/* Иконка стрелки (поворот) */
+.arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.arrow-icon.arrow-rotated {
+    transform: rotate(180deg); /* Поворачиваем стрелку */
+}
+
+/* Стили для элементов списка */
+.language-menu li {
+    padding: 10px;
+    color: var(--text-light);
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+    transition: background 0.2s ease;
+}
+
+.language-menu li:hover {
+    background: var(--secondary-color);
+    color: black;
+}
+
+/* Hover эффект */
+.language-switch.active .language-menu {
+    display: block;
+}
+
+.language-switch.active .arrow-icon {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+/* Кнопка OUR SOCIALS */
+.our-socials-btn {
+    width: 200px;
+    height: 50px;
+    font-family: 'Chakra Petch', sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 21px;
+    letter-spacing: -1%; /* Межбуквенное расстояние */
+    color: #5EF6FF; /* Цвет текста */
+    background: none; /* Убираем фон */
+    border: 2px solid var(--primary-color); /* Обводка кнопки */
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Плавный переход при hover */
+}
+
+/* Hover-эффект для OUR SOCIALS */
+.our-socials-btn:hover {
+    background: var(--primary-color); /* Заполняем цветом */
+    color: var(--background-dark); /* Цвет текста при наведении */
+}
+
+/* OUR SOCIALS */
+
+#overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 15, 17, 0.486);
+    z-index: 9999; /* Очень высокий z-index */
+}
+
+#content-block {
+    position: relative;
+    width: 80%; 
+    max-width: 950px;
+    height: auto; 
+    background-color: rgb(0, 0, 0); 
+    z-index: 10000;
+    border: 1px solid #2F2F2F;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto; 
+}
+
+
+#close-block {
+    position: absolute;
+    top: 20px; 
+    right: 20px; 
+    width: 30px; 
+    height: 30px; 
+    background-color: transparent; 
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 3;
+}
+
+#close-block img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+}
+
+#block {
+    width: 100%; 
+    text-align: center;
+}
+
+#main-text {
+    margin-bottom: 20px;
+}
+
+#main-text p{
+    font-size: 98px; 
+    font-weight: 800;
+    font-style: italic;
+    color: transparent;
+    -webkit-text-stroke: 3px var(--primary-color);
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* SOCIAL ICONS */
+
+#socials {
+    display: flex;
+    justify-content: center; 
+    gap: 5px; 
+}
+
+.social-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px; 
+    height: auto;
+    overflow: hidden; 
+}
+
+.social-img {
+    width: 100%; 
+    height: auto;
+    object-fit: contain; 
+    filter: grayscale(100%); 
+    transition: filter 0.3s ease, transform 0.3s ease; 
+}
+
+.social-item:hover .social-img {
+    filter: grayscale(0%); 
+    transform: scale(1.1); 
+}
+
+/* CONTACT BLOCK */
+
+#contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    color: #4B4B4B;
+}
+
+#line {
+    width: 210px;
+    border: none; 
+    border-top: 1px solid #4B4B4B; 
+    margin: 0 10px; 
+}
+
+#text {
+    white-space: nowrap; 
+}
+
+/* SEND MESSAGE BUTTON */
+
+#send-msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#send-btn {
+    width: 320px;
+    height: 50px;
+    background-color: var(--primary-color);
+    color: #111;
+    text-align: center;
+    font-size: 19px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 1400px) {
+
+    .header {
+        padding: 0px 150px; 
+    }
+    
+}
+
+
+@media (max-width: 1200px) {
+
+    .header {
+        padding: 0px 100px; 
+    }
+
+    #main-text p {
+        font-size: 50px; /* Адаптивный размер текста */
+        -webkit-text-stroke: 1px var(--primary-color);
+    }
+    
+
+}
+
+
+@media (max-width: 760px) {
+
+    .header{
+        padding: 0px 50px;
+    }
+
+    .header .logo img {
+        max-height: 60px; /* Размер логотипа */
+    }
+
+    .our-socials-btn {
+        width: 150px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .language-switch {
+        gap: 4px;
+        font-size: 16px; 
+    }
+
+    .language-switch .icon,
+    .language-switch .arrow-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .language-menu {
+        width: 100px;
+    }
+
+    .language-menu li {
+        padding: 6px;
+        font-size: 8px;
+    }
+
+    /* Контейнер для правых элементов */
+    .header-right {
+        gap: 15px; /* Расстояние между кнопкой и переключателем языка */
+    }
+
+
+    #content-block {
+        padding: 25px;
+    }
+
+    #main-text p{
+        font-size: 32px; 
+    }
+
+    #contact {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        color: #4B4B4B;
+    }
+    
+    #line {
+        width: 170px;
+        border: none; /* Убираем стандартные границы */
+        border-top: 1px solid #4B4B4B; /* Линия */
+        margin: 0 10px; /* Отступы между линией и текстом */
+    }
+    
+    #text {
+        font-size: 12px;
+    }
+    
+    #send-btn {
+        width: 180px;
+        height: 35px;
+        color: #111;
+        font-size: 14px;
+    }
+
+    #close-block {
+        width: 15px; 
+        height: 15px; 
+    }
+    
+    #close-block img {
+        width: 100%; 
+        height: 100%; 
+        object-fit: contain; 
+    }
+
+}
+
+
+@media (max-width: 520px) {
+
+    .header {
+        padding: 0px 25px; 
+        margin-top: 20px;
+    }
+
+    .header .logo img {
+        max-height: 40px; /* Размер логотипа */
+    }
+
+    .our-socials-btn {
+        width: 100px;
+        height: 25px;
+        font-size: 10px;
+    }
+
+    .language-switch {
+        gap: 4px;
+        font-size: 10px; 
+    }
+
+    .language-switch .icon,
+    .language-switch .arrow-icon {
+        width: 17px;
+        height: 17px;
+    }
+
+    .language-menu {
+        width: 100px;
+    }
+
+    .language-menu li {
+        padding: 6px;
+        font-size: 8px;
+    }
+
+    /* Контейнер для правых элементов */
+    .header-right {
+        gap: 15px; /* Расстояние между кнопкой и переключателем языка */
+    }
+
+}

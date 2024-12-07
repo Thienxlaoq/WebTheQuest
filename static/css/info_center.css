@@ -1,0 +1,245 @@
+body, html {
+    background: url(/static/img/bg.png) no-repeat center center/cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Высота экрана */
+    overflow-x: hidden; /* Убираем горизонтальный скролл */
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+/* Стили выделения текста */
+::selection {
+    background: transparent; 
+    color: #FF4E47; 
+}
+::-moz-selection {
+    background: transparent; 
+    color: #FF4E47;
+}
+
+body {
+    position: relative; /* Родительский контейнер для позиционирования */
+}
+
+.main-container {
+    position: relative;
+    border-bottom: 1px solid rgb(39, 39, 39);
+    height: 800px;
+    display: flex;
+    top: -150px;
+    flex-direction: column;
+    justify-content: flex-end; /* Выравнивание по низу */
+    background: url(/static/img/herosection.png) no-repeat center center/cover;
+}
+
+.info {
+    margin: 0px 250px 0;
+    text-align: left;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    margin-bottom: 25px; /* Отступ снизу */
+}
+
+.sub-title {
+    color: #797979;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.main-text p {
+    margin: 0;
+    font-size: 92px;
+    line-height: 92px;
+    font-weight: bold;
+    margin-bottom: 25px; /* Отступ снизу */
+    color: white;
+}
+
+.readmore a {
+    text-decoration: none; /* Убираем подчеркивание у ссылки */
+    font-size: 20px;
+    color: rgb(128, 128, 128); /* Задаем нужный цвет */
+    letter-spacing: 1px;
+    line-height: 24px; /* Совпадает с высотой иконки */
+    font-weight: 200;
+    display: inline-flex;
+    align-items: center; /* Выравнивание текста и иконки */
+}
+
+.readmore a:hover {
+    color: #FFCE00; /* Задаем нужный цвет */
+}
+
+.right-arrow-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 5px; /* Отступ от текста */
+    vertical-align: middle;
+}
+
+.main-content p {
+    font-size: 15px;
+    font-weight: 500;
+    border: solid 3px #5EF5FF;
+    border-radius: 5px;
+    color: #5EF5FF;
+    background: rgb(94, 246, 255, 15%);
+    height: 31px;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+}
+
+/* кнопки news, updates, events */
+  
+.menu {
+    margin-left: 250px;
+    margin-top: 90px;
+    display: flex; /* Flexbox для выравнивания кнопок */
+    flex-wrap: nowrap; /* Запрет переноса строк */
+    overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+    gap: 20px; /* Расстояние между кнопками */
+}
+
+.menu .menu-button {
+    width: 200px;
+    height: 60px;
+    background-color: #0D0D0D;
+    color: #ACACAC;
+    border: none;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 2%;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+
+.menu-button:not(.active):hover {
+    background-color: #131313;
+}
+
+.menu-button.active {
+    color: #FFCE00;
+    border-top: 2px solid #FFCE00; /* Подчеркивание активной кнопки */
+}
+
+.content {
+    padding: 20px;
+}
+
+p{
+  margin: 0;
+}
+  
+
+@media (max-width: 1190px) {
+
+
+    .info {
+        margin: 0px 100px 0;
+    }
+
+    .menu {
+        margin: 0px 100px 0;
+        margin-top: 90px;
+    }
+
+}
+
+@media (max-width: 750px) {
+
+
+    .info {
+        margin: 0px 75px 0;
+    }
+
+    .menu {
+        margin: 0px 75px 0;
+        margin-top: 90px;
+        gap: 10px;
+    }
+    
+    .main-text p {
+        font-size: 56px;
+        line-height: 56px;
+    }
+
+    .menu .menu-button {
+        width: 200px;
+        height: 60px;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: 2%;
+    }
+}
+
+@media (max-width: 520px) {
+
+    .main-container {
+        height: 550px;
+    }
+
+    .info {
+        margin: 0px 25px 0;
+    }
+
+    .menu {
+        margin: 0px 25px 0;
+        margin-top: 50px;
+    }
+
+    .menu .menu-button {
+        width: 200px;
+        height: 45px;
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 2%;
+    }
+
+    .main-content {
+        margin-bottom: 0px; /* Отступ снизу */
+    }
+
+    .main-content p {
+        font-size: 7px;
+        border: solid 1px #5EF5FF;
+        border-radius: 2px;
+        height: 14px;
+        width: 72px;
+    }
+
+    .main-text p {
+        font-size: 36px;
+        line-height: 36px;
+        margin-bottom: 15px;
+    }
+
+    .sub-title {
+        font-size: 13px;
+    }
+
+    .readmore a {
+        text-decoration: none; /* Убираем подчеркивание у ссылки */
+        font-size: 13px;
+        line-height: 24px; /* Совпадает с высотой иконки */
+    }
+
+    .right-arrow-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+
+}
+
+
