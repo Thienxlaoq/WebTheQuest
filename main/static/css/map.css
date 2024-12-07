@@ -17,7 +17,7 @@ body, html {
     padding: 0;
     font-family: var(--font-family);
     color: #fff;
-    background: var(--color-bg) url('../img/HeroSection.png') no-repeat center/cover;
+    background: var(--color-bg) url('../img/herosection.png') no-repeat center/cover;
     height: 100vh;
     overflow-x: hidden;
 }
