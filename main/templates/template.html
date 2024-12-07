@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta itemprop="name" content="The Quest"/>
   <title>{% block title %}{% endblock %}</title>
-  <link rel="icon" type="image/png" href="/static/img/logoquest.png">
+  <link rel="icon" type="image/png" href="{% static 'img/logoquest.png' %}">
   {% block css %}
   {% endblock %}
   <link rel="stylesheet" href="{% static 'css/header.css' %}" type="text/css">
