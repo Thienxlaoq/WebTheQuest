@@ -62,10 +62,6 @@ body, html {
     gap: 30px;
 }
 
-.block .quests {
-    gap: 30px;
-}
-
 .content-container {
     display: flex;
     gap: 30px;
