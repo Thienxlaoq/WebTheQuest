@@ -58,6 +58,8 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Добавьте эту строку
 ]
 
+WHITENOISE_USE_FINDERS = True
+
 ROOT_URLCONF = 'thequest.urls'
 
 TEMPLATES = [
@@ -128,8 +130,10 @@ USE_TZ = True
 
 # Статические файлы (CSS, JS, изображения для интерфейса)
 STATIC_URL = '/static/'
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = '/app/static'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'staticfiles'),  # Папка для временных статических файлов
+]
 
 # Медиа файлы (файлы, загружаемые пользователями)
 MEDIA_URL = '/media/'
