@@ -130,10 +130,7 @@ USE_TZ = True
 
 # Статические файлы (CSS, JS, изображения для интерфейса)
 STATIC_URL = '/static/'
-STATIC_ROOT = '/app/static'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'staticfiles'),  # Папка для временных статических файлов
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Медиа файлы (файлы, загружаемые пользователями)
 MEDIA_URL = '/media/'
