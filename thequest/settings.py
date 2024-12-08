@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-580hrnvq_8n#avbgsp!=)x3luf-)@t!5dovn2c5qx2%80=*uh%'
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['thequest-72c3ecbb030c.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['www.thequest.pro','thequest.pro','thequest-72c3ecbb030c.herokuapp.com', 'localhost']
 
 # Application definition
 
@@ -39,7 +39,15 @@ INSTALLED_APPS = [
     'main',
     'ckeditor',
     'whitenoise.runserver_nostatic', 
+    'storages',
 ]
+
+# Указываем backend для хранения файлов
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'thequest_website_bucket'
+GS_CREDENTIALS = 'D:\privatewebthequest\thequest-404518-f27841ae92b4.json' 
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
 CKEDITOR_CONFIGS = {
     'default': {
