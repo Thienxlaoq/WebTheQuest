@@ -157,3 +157,5 @@ GS_CREDENTIALS = 'D:\\privatewebthequest\\thequest-404518-f27841ae92b4.json'
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
 
+WHITENOISE_AUTOREFRESH = True
+WHITENOISE_USE_FINDERS = True
