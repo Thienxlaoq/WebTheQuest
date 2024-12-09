@@ -1,6 +1,0 @@
-/* Устанавливаем цвет фона редактора */
-.cke_editable {
-    background-color: #2c2c2c; /* Серый фон */
-    color: #ffffff; /* Белый текст */
-    border-color: #2c2c2c;
-}
