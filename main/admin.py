@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import News, Event, Update
+from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.models import User
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
@@ -22,3 +24,9 @@ class UpdateAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     list_filter = ('is_visible', 'published_date')
 
+class CustomUserAdmin(UserAdmin):
+    list_display = ('username', 'email', 'is_staff', 'is_superuser', 'is_active', 'last_login')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
+
+admin.site.unregister(User)
+admin.site.register(User, CustomUserAdmin)
