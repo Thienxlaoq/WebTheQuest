@@ -50,12 +50,6 @@ logging.basicConfig(
 )
 
 
-# Указываем backend для хранения файлов
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'thequest_website_bucket'
-GS_CREDENTIALS = 'D:\\privatewebthequest\\thequest-404518-f27841ae92b4.json'
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
-
 CKEDITOR_CONFIGS = {
     'default': {
         'contentsCss': '/static/css/ckeditor_custom.css',  # Путь к вашему CSS-файлу
@@ -152,7 +146,21 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
+
+# GCS настройки для медиа
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'thequest_website_bucket'
+GS_CREDENTIALS = 'D:\\privatewebthequest\\thequest-404518-f27841ae92b4.json'
+
+# Медиафайлы
+if DEBUG:
+    # Локальное хранилище для разработки
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+else:
+    # Облачное хранилище для продакшена
+    MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
+
 
