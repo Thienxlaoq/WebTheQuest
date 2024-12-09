@@ -156,6 +156,5 @@ GS_BUCKET_NAME = 'thequest_website_bucket'
 GS_CREDENTIALS = 'google-credentials.json'
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
-
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
