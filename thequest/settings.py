@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
 GS_CREDENTIALS = 'D:\\privatewebthequest\\thequest-404518-f27841ae92b4.json'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
 CKEDITOR_CONFIGS = {
