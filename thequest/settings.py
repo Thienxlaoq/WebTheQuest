@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.thequest.pro','thequest.pro','thequest-72c3ecbb030c.herokuapp.com']
+ALLOWED_HOSTS = ['www.thequest.pro','thequest.pro','thequest-72c3ecbb030c.herokuapp.com', 'crystalline-kangaroo-idxmc57hcytlvuga79qbm5y9.herokudns.com' , 'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com']
 
 # Application definition
 
