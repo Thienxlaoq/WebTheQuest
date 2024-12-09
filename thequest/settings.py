@@ -13,6 +13,8 @@ import os
 from pathlib import Path
 import logging
 from google.oauth2 import service_account
+import json
+from decouple import config
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -148,14 +150,18 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+GOOGLE_CLOUD_KEY_JSON = config('GOOGLE_CLOUD_KEY_JSON')
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
-
-# GCS настройки для медиа
+GS_CREDENTIALS = service_account.Credentials.from_service_account_info(
+    json.loads(GOOGLE_CLOUD_KEY_JSON)
+)
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
-GS_CREDENTIALS = '/app/key.json'
+
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
+
 
 
 WHITENOISE_AUTOREFRESH = True
