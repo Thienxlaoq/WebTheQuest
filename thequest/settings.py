@@ -153,7 +153,8 @@ SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
 # GCS настройки для медиа
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
-GS_CREDENTIALS = 'google-credentials.json'
+GS_CREDENTIALS = os.path.join(BASE_DIR, 'google-credentials.json')
+
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
 WHITENOISE_AUTOREFRESH = True
