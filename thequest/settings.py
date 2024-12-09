@@ -163,7 +163,5 @@ DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
-
-
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
