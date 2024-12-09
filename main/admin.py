@@ -23,10 +23,3 @@ class UpdateAdmin(admin.ModelAdmin):
     list_editable = ('is_visible', 'is_featured')
     search_fields = ('title', 'description')
     list_filter = ('is_visible', 'published_date')
-
-class CustomUserAdmin(UserAdmin):
-    list_display = ('username', 'email', 'is_staff', 'is_superuser', 'is_active', 'last_login')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
-
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
