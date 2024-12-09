@@ -9,11 +9,13 @@ class News(models.Model):
     news_image = models.ImageField(
         upload_to='news-imgs', 
         null=True, 
+        blank=True,  
         verbose_name='Изображение для новости'
     )
     content_image = models.ImageField(
         upload_to='content_imgs', 
-        null=True, 
+        null=True,
+        blank=True, 
         verbose_name='Фон для блока новости'
     )
     published_date = models.DateField(auto_now_add=True, verbose_name='Дата публикации')
@@ -37,12 +39,14 @@ class Event(models.Model):
     is_featured = models.BooleanField(default=False, verbose_name="Отображать в главном блоке")
     event_image = models.ImageField(
         upload_to='event_imgs', 
-        null=True, 
+        null=True,
+        blank=True, 
         verbose_name='Изображение для Events'
     )
     event_content_image = models.ImageField(
         upload_to='content_imgs', 
         null=True, 
+        blank=True,
         verbose_name='Фон для Events'
     )
 
@@ -64,11 +68,13 @@ class Update(models.Model):
     update_image = models.ImageField(
         upload_to='update_imgs', 
         null=True, 
+        blank=True,
         verbose_name='Изображение для новости'
     )
     update_content_image = models.ImageField(
         upload_to='content_imgs', 
         null=True, 
+        blank=True,
         verbose_name='Фон для блока новости'
     )
 
