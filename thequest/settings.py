@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main',
     'ckeditor',
-    'whitenoise.runserver_nostatic', 
+    'whitenoise.runserver_nostatic',
     'storages',
 ]
 
