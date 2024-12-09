@@ -45,7 +45,7 @@ INSTALLED_APPS = [
 # Указываем backend для хранения файлов
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
-GS_CREDENTIALS = 'D:\privatewebthequest\thequest-404518-f27841ae92b4.json' 
+GS_CREDENTIALS = 'D:\\privatewebthequest\\thequest-404518-f27841ae92b4.json'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
