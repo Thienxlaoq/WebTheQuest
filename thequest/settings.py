@@ -27,7 +27,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['www.thequest.pro','thequest.pro','thequest-72c3ecbb030c.herokuapp.com', 'localhost', '127.0.0.1:8000']
+ALLOWED_HOSTS = ['www.thequest.pro','thequest.pro','thequest-72c3ecbb030c.herokuapp.com']
 
 # Application definition
 
