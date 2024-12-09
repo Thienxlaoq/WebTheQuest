@@ -42,6 +42,14 @@ INSTALLED_APPS = [
     'storages',
 ]
 
+import logging
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s %(levelname)s %(message)s",
+)
+
+
 # Указываем backend для хранения файлов
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
