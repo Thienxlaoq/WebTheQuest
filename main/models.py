@@ -1,42 +1,16 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 
-from django.core.exceptions import SuspiciousOperation
-from google.cloud import storage
-
-def upload_to_gcs(file, bucket_name, destination_blob_name):
-    try:
-        client = storage.Client()
-        bucket = client.get_bucket(bucket_name)
-        blob = bucket.blob(destination_blob_name)
-        blob.upload_from_file(file)
-    except Exception as e:
-        raise SuspiciousOperation(f"Error uploading to GCS: {e}")
-
-
 class News(models.Model):
     title = RichTextField(help_text="Вы можете использовать HTML или стилизовать текст с разными цветами.")
     description = RichTextField(blank=True, verbose_name='Текст новости:')
-    news_image = models.ImageField(
-        upload_to='news-imgs', 
-        null=True, 
-        blank=True,  
-        verbose_name='Изображение для новости'
-    )
-    content_image = models.ImageField(
-        upload_to='content_imgs', 
-        null=True,
-        blank=True, 
-        verbose_name='Фон для блока новости'
-    )
+    
+    news_image = models.ImageField(upload_to='content_image', null=True, verbose_name='Изображение для новости')
+    content_image = models.ImageField(upload_to='news_imgs', null=True, verbose_name='Фон для блока новости')
+    
     published_date = models.DateField(auto_now_add=True, verbose_name='Дата публикации')
     is_visible = models.BooleanField(default=True, verbose_name="Показывать новость")
     is_featured = models.BooleanField(default=False, verbose_name="Отображать в главном блоке")
-
-    def save(self, *args, **kwargs):
-        if self.is_featured:
-            News.objects.filter(is_featured=True).update(is_featured=False)
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
