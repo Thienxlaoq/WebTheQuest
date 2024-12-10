@@ -117,10 +117,14 @@ WHITENOISE_USE_FINDERS = True
 
 # Получаем содержимое из переменной окружения
 google_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+
 if google_credentials:
-    # Загружаем JSON данные из строки
-    credentials_dict = json.loads(google_credentials)
-    GS_CREDENTIALS = service_account.Credentials.from_service_account_info(credentials_dict)
+    try:
+        # Если переменная окружения содержит строку в формате Base64, расшифруем её
+        credentials_dict = json.loads(google_credentials)
+        GS_CREDENTIALS = service_account.Credentials.from_service_account_info(credentials_dict)
+    except json.JSONDecodeError as e:
+        raise ValueError("Invalid JSON format in Google credentials: " + str(e))
 else:
     raise ValueError("Google credentials not found in environment variables")
 
