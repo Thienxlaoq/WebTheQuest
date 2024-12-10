@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import logging
 import json
+from google.oauth2.service_account import Credentials
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -135,14 +136,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-# Статические файлы (CSS, JS, изображения для интерфейса)
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -151,18 +144,23 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
 
-# Раскодировка учетных данных из переменной окружения
-GOOGLE_CREDENTIALS = json.loads(os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON", "{}"))
+# Учетные данные для Google Cloud Storage
+GOOGLE_APPLICATION_CREDENTIALS_PATH = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+if GOOGLE_APPLICATION_CREDENTIALS_PATH and os.path.exists(GOOGLE_APPLICATION_CREDENTIALS_PATH):
+    with open(GOOGLE_APPLICATION_CREDENTIALS_PATH, 'r') as f:
+        GOOGLE_CREDENTIALS = json.load(f)
+    GS_CREDENTIALS = Credentials.from_service_account_info(GOOGLE_CREDENTIALS)
+else:
+    GS_CREDENTIALS = None
 
-# Настройка GCS
+# Настройки GCS
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
-# Передача учетных данных
-from google.oauth2.service_account import Credentials
-GS_CREDENTIALS = Credentials.from_service_account_info(GOOGLE_CREDENTIALS)
-
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'\
+# Статические файлы
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 WHITENOISE_AUTOREFRESH = True
