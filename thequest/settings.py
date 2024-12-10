@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 import logging
+import json
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -150,12 +151,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
 
-# GCS настройки для медиа
+# Раскодировка учетных данных из переменной окружения
+GOOGLE_CREDENTIALS = json.loads(os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON", "{}"))
+
+# Настройка GCS
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
-GS_CREDENTIALS = os.path.join(BASE_DIR, 'google-credentials.json')
 
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
+# Передача учетных данных
+from google.oauth2.service_account import Credentials
+GS_CREDENTIALS = Credentials.from_service_account_info(GOOGLE_CREDENTIALS)
+
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'\
+
 
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
