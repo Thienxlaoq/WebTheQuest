@@ -152,7 +152,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
 
-GOOGLE_CREDENTIALS_JSON = os.getenv('GOOGLE_CREDENTIALS')
+encoded_credentials = os.getenv('google-credentials')
+
+# Проверка, что переменная окружения установлена
+if encoded_credentials:
+    # Декодируем строку в файл в папке /tmp, доступной для Heroku
+    credentials_path = '/tmp/credential.json'  # Путь в Heroku для временных файлов
+    with open(credentials_path, 'wb') as f:
+        f.write(base64.b64decode(encoded_credentials))
+
+    # Устанавливаем переменную окружения для Google Cloud SDK
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
+else:
+    print("Google credentials not found. Please check your environment variable.")
+
+# Чтение и использование Google Cloud credentials в настройках
+GOOGLE_CREDENTIALS_JSON = os.getenv('google-credentials')
 
 if GOOGLE_CREDENTIALS_JSON:
     GOOGLE_CREDENTIALS = json.loads(GOOGLE_CREDENTIALS_JSON)
@@ -163,8 +178,6 @@ else:
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'  # Укажи свой GCS bucket
 GS_CREDENTIALS = service_account.Credentials.from_service_account_info(GOOGLE_CREDENTIALS)
-
-
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
 WHITENOISE_AUTOREFRESH = True
