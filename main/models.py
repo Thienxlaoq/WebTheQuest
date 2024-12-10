@@ -1,7 +1,18 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 
-# Убедитесь, что у вас настроен GCS как DEFAULT_FILE_STORAGE в settings.py
+from django.core.exceptions import SuspiciousOperation
+from google.cloud import storage
+
+def upload_to_gcs(file, bucket_name, destination_blob_name):
+    try:
+        client = storage.Client()
+        bucket = client.get_bucket(bucket_name)
+        blob = bucket.blob(destination_blob_name)
+        blob.upload_from_file(file)
+    except Exception as e:
+        raise SuspiciousOperation(f"Error uploading to GCS: {e}")
+
 
 class News(models.Model):
     title = RichTextField(help_text="Вы можете использовать HTML или стилизовать текст с разными цветами.")
