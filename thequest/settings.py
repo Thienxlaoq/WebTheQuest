@@ -117,9 +117,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 
-# GCS settings for media
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'thequest_website_bucket'
 # Чтение переменной окружения с закодированным в base64 файлом
 encoded_credentials = os.getenv('GOOGLE_CREDENTIALS')
 
@@ -136,7 +133,14 @@ else:
     print("Google credentials not found. Please check your environment variable.")
 
 # MEDIA URL for serving media files from GCS
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
+
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_PROJECT_ID = 'thequest-404518'
+GS_BUCKET_NAME = 'thequest_website_bucket'
+MEDIA_ROOT = "media/"
+UPLOAD_ROOT = "media/uploads/"
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
