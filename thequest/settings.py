@@ -139,9 +139,6 @@ if encoded_credentials:
 else:
     print("Google credentials not found. Please check your environment variable.")
 
-# MEDIA URL for serving media files from GCS
-
-
 
 
 WHITENOISE_AUTOREFRESH = True
