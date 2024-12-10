@@ -23,15 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = [
-    'www.thequest.pro',
-    'thequest.pro',
-    'thequest-72c3ecbb030c.herokuapp.com',
-    'crystalline-kangaroo-idxmc57hcytlvuga79qbm5y9.herokudns.com',
-    'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com'
-]
+ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
 
 # Application definition
 INSTALLED_APPS = [
@@ -78,10 +72,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'thequest.wsgi.application'
 
-# Database
+# Database configuration
 DATABASES = {
     'default': dj_database_url.config(
-        default=f'sqlite:///{BASE_DIR / "db.sqlite3"}'
+        default=os.getenv('DATABASE_URL', f'sqlite:///{BASE_DIR / "db.sqlite3"}')
     )
 }
 
@@ -109,18 +103,17 @@ SECURE_SSL_REDIRECT = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # WhiteNoise settings
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
 
-# Получаем содержимое из переменной окружения
+# Google Cloud credentials
 google_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 if google_credentials:
     try:
-        # Если переменная окружения содержит строку в формате Base64, расшифруем её
         credentials_dict = json.loads(google_credentials)
         GS_CREDENTIALS = service_account.Credentials.from_service_account_info(credentials_dict)
     except json.JSONDecodeError as e:
@@ -128,14 +121,14 @@ if google_credentials:
 else:
     raise ValueError("Google credentials not found in environment variables")
 
-GS_BUCKET_NAME = 'thequest_website_bucket'
+GS_BUCKET_NAME = os.getenv('GS_BUCKET_NAME', 'thequest_website_bucket')
 
-# Для хранения статических файлов и медиа
+# Static and media files on Google Cloud Storage
 STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/static/'
 STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-# Включите эту строку, если хотите настроить использование GCS для статических файлов
+# Google Cloud Storage ACL
 GS_DEFAULT_ACL = 'publicRead'
