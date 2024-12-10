@@ -119,9 +119,8 @@ SECURE_SSL_REDIRECT = True
 # GCS settings for media
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
-# Credentials file is fetched using environment variable
-GS_CREDENTIALS = None
 
+# MEDIA URL for serving media files from GCS
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
 WHITENOISE_AUTOREFRESH = True
