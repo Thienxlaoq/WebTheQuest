@@ -10,10 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
-import json
-import base64
 from pathlib import Path
-from google.oauth2.service_account import Credentials
+from google.oauth2 import service_account
 import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -116,37 +114,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
 
-# Google Cloud Storage settings
-encoded_credentials = os.getenv("GOOGLE_CREDENTIALS")
-credentials_path = '/tmp/credential.json'
-
-if encoded_credentials:
-    try:
-        with open(credentials_path, 'wb') as f:
-            f.write(base64.b64decode(encoded_credentials))
-        os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
-    except Exception as e:
-        print(f"Error decoding Google Cloud credentials: {e}")
-        credentials_path = None
-else:
-    print("Google Cloud credentials not found in the environment variable.")
-
-if credentials_path and os.path.exists(credentials_path):
-    with open(credentials_path, 'r') as f:
-        GOOGLE_CREDENTIALS = json.load(f)
-    GS_CREDENTIALS = Credentials.from_service_account_info(GOOGLE_CREDENTIALS)
-else:
-    GS_CREDENTIALS = None
-
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'thequest_website_bucket'
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
-
-# Logging for debugging purposes
-import logging
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s %(levelname)s %(message)s",
+# Путь к вашему JSON ключу
+GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
+    'google-credentials.json'  # Укажите путь к вашему ключу
 )
-logger = logging.getLogger(__name__)
-logger.debug("Google Cloud Storage settings configured.")
+
+# Название вашего бакета
+GS_BUCKET_NAME = 'thequest_website_bucket'
+
+# Для хранения статических файлов и медиа
+STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/static/'
+STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+
+# Включите эту строку, если хотите настроить использование GCS для статических файлов
+GS_DEFAULT_ACL = 'publicRead'
