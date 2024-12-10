@@ -9,11 +9,10 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import os
 from pathlib import Path
-import logging
-import base64
 import dj_database_url
+import os
+import base64
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,11 +43,6 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'storages',
 ]
-
-logging.basicConfig(
-    level=logging.DEBUG,
-    format="%(asctime)s %(levelname)s %(message)s",
-)
 
 CKEDITOR_CONFIGS = {
     'default': {
@@ -112,8 +106,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
 
@@ -122,7 +114,7 @@ GS_PROJECT_ID = 'thequest-404518'
 GS_BUCKET_NAME = 'thequest_website_bucket'
 MEDIA_ROOT = "media/"
 UPLOAD_ROOT = "media/uploads/"
-MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
+MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
 
 # Чтение переменной окружения с закодированным в base64 файлом
 encoded_credentials = os.getenv('GOOGLE_CREDENTIALS')
