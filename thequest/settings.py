@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
-import base64
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -108,29 +107,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
-
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_PROJECT_ID = 'thequest-404518'
-GS_BUCKET_NAME = 'thequestweb'
-MEDIA_ROOT = "media/"
-UPLOAD_ROOT = "media/uploads/"
-MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
-
-# Чтение переменной окружения с закодированным в base64 файлом
-encoded_credentials = os.getenv('GOOGLE_CREDENTIALS')
-
-# Проверка, что переменная окружения установлена
-if encoded_credentials:
-    # Декодируем строку в файл в папке /tmp, доступной для Heroku
-    credentials_path = '/tmp/credential.json'  # Путь в Heroku для временных файлов
-    with open(credentials_path, 'wb') as f:
-        f.write(base64.b64decode(encoded_credentials))
-
-    # Устанавливаем переменную окружения для Google Cloud SDK
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
-else:
-    print("Google credentials not found. Please check your environment variable.")
-
 
 
 WHITENOISE_AUTOREFRESH = True
