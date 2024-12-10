@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from google.oauth2 import service_account
 import dj_database_url
+import json
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -114,12 +115,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 WHITENOISE_AUTOREFRESH = True
 WHITENOISE_USE_FINDERS = True
 
-# Путь к вашему JSON ключу
-GS_CREDENTIALS = service_account.Credentials.from_service_account_file(
-    'google-credentials.json'  # Укажите путь к вашему ключу
-)
+# Получаем содержимое из переменной окружения
+google_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+if google_credentials:
+    # Загружаем JSON данные из строки
+    credentials_dict = json.loads(google_credentials)
+    GS_CREDENTIALS = service_account.Credentials.from_service_account_info(credentials_dict)
+else:
+    raise ValueError("Google credentials not found in environment variables")
 
-# Название вашего бакета
 GS_BUCKET_NAME = 'thequest_website_bucket'
 
 # Для хранения статических файлов и медиа
