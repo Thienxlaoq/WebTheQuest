@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 import logging
+import json
+from google.oauth2 import service_account
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -150,10 +152,18 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
 
-# GCS настройки для медиа
+GOOGLE_CREDENTIALS_JSON = os.getenv('GOOGLE_CREDENTIALS')
+
+if GOOGLE_CREDENTIALS_JSON:
+    GOOGLE_CREDENTIALS = json.loads(GOOGLE_CREDENTIALS_JSON)
+else:
+    raise ValueError("Google Cloud credentials are not set in the environment variables")
+
+# Настройка для Google Cloud Storage
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'thequest_website_bucket'
-GS_CREDENTIALS = os.path.join(BASE_DIR, 'google-credentials.json')
+GS_BUCKET_NAME = 'thequest_website_bucket'  # Укажи свой GCS bucket
+GS_CREDENTIALS = service_account.Credentials.from_service_account_info(GOOGLE_CREDENTIALS)
+
 
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
