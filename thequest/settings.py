@@ -144,7 +144,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
 
-# Google Cloud Storage
 GOOGLE_APPLICATION_CREDENTIALS_PATH = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
 if GOOGLE_APPLICATION_CREDENTIALS_PATH and os.path.exists(GOOGLE_APPLICATION_CREDENTIALS_PATH):
     with open(GOOGLE_APPLICATION_CREDENTIALS_PATH, 'r') as f:
@@ -152,14 +151,21 @@ if GOOGLE_APPLICATION_CREDENTIALS_PATH and os.path.exists(GOOGLE_APPLICATION_CRE
     GS_CREDENTIALS = Credentials.from_service_account_info(GOOGLE_CREDENTIALS)
 else:
     GS_CREDENTIALS = None
+    print("Google Cloud Storage credentials not found or invalid.")
 
+# Настройки Google Cloud Storage
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
+GS_CREDENTIALS = GS_CREDENTIALS
+
+# Медиафайлы
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
-# Статические файлы
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# Логирование
+import logging
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+logger.debug("Google Cloud Storage setup complete.")
 
 
 WHITENOISE_AUTOREFRESH = True
