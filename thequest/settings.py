@@ -13,10 +13,8 @@ import os
 from pathlib import Path
 import logging
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -27,10 +25,11 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['www.thequest.pro','thequest.pro','thequest-72c3ecbb030c.herokuapp.com', 'crystalline-kangaroo-idxmc57hcytlvuga79qbm5y9.herokudns.com' , 'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com']
+ALLOWED_HOSTS = ['www.thequest.pro', 'thequest.pro', 'thequest-72c3ecbb030c.herokuapp.com', 
+                 'crystalline-kangaroo-idxmc57hcytlvuga79qbm5y9.herokudns.com',
+                 'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com']
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,16 +43,14 @@ INSTALLED_APPS = [
     'storages',
 ]
 
-
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s %(levelname)s %(message)s",
 )
 
-
 CKEDITOR_CONFIGS = {
     'default': {
-        'contentsCss': '/static/css/ckeditor_custom.css',  # Путь к вашему CSS-файлу
+        'contentsCss': '/static/css/ckeditor_custom.css',
     },
 }
 
@@ -90,10 +87,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'thequest.wsgi.application'
 
-
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -101,59 +95,32 @@ DATABASES = {
     }
 }
 
-
-# Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
-# Статические файлы (CSS, JS, изображения для интерфейса)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
+SECURE_SSL_REDIRECT = True
 
-# GCS настройки для медиа
+# GCS settings for media
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
-GS_CREDENTIALS = os.path.join(BASE_DIR, 'google-credentials.json')
+# Credentials file is fetched using environment variable
+GS_CREDENTIALS = None
 
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
 
