@@ -119,6 +119,20 @@ SECURE_SSL_REDIRECT = True
 # GCS settings for media
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequest_website_bucket'
+# Чтение переменной окружения с закодированным в base64 файлом
+encoded_credentials = os.getenv('GOOGLE_CREDENTIALS')
+
+# Проверка, что переменная окружения установлена
+if encoded_credentials:
+    # Декодируем строку в файл в папке /tmp, доступной для Heroku
+    credentials_path = '/tmp/credential.json'  # Путь в Heroku для временных файлов
+    with open(credentials_path, 'wb') as f:
+        f.write(base64.b64decode(encoded_credentials))
+
+    # Устанавливаем переменную окружения для Google Cloud SDK
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
+else:
+    print("Google credentials not found. Please check your environment variable.")
 
 # MEDIA URL for serving media files from GCS
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
