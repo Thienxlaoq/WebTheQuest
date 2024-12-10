@@ -11,23 +11,26 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-from google.oauth2 import service_account
-import dj_database_url
-import json
+import logging
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
 # Quick-start development settings - unsuitable for production
+# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-default-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
+DEBUG = True
 
-ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost').split(',')
+ALLOWED_HOSTS = ['www.thequest.pro','thequest.pro','thequest-72c3ecbb030c.herokuapp.com', 'crystalline-kangaroo-idxmc57hcytlvuga79qbm5y9.herokudns.com' , 'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com']
 
 # Application definition
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -41,6 +44,19 @@ INSTALLED_APPS = [
     'storages',
 ]
 
+
+logging.basicConfig(
+    level=logging.DEBUG,
+    format="%(asctime)s %(levelname)s %(message)s",
+)
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'contentsCss': '/static/css/ckeditor_custom.css',  # Путь к вашему CSS-файлу
+    },
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -49,8 +65,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
 ]
+
+WHITENOISE_USE_FINDERS = True
 
 ROOT_URLCONF = 'thequest.urls'
 
@@ -72,63 +90,72 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'thequest.wsgi.application'
 
-# Database configuration
+
+# Database
+# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', f'sqlite:///{BASE_DIR / "db.sqlite3"}')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
+
 # Password validation
+# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
+
 AUTH_PASSWORD_VALIDATORS = [
-    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
-    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
+
 # Internationalization
+# https://docs.djangoproject.com/en/3.2/topics/i18n/
+
 LANGUAGE_CODE = 'en-us'
+
 TIME_ZONE = 'UTC'
+
 USE_I18N = True
+
 USE_L10N = True
+
 USE_TZ = True
 
-# Default primary key field type
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Security settings
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
 
 # Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/3.2/howto/static-files/
+
+# Статические файлы (CSS, JS, изображения для интерфейса)
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# WhiteNoise settings
-WHITENOISE_AUTOREFRESH = True
-WHITENOISE_USE_FINDERS = True
+# Default primary key field type
+# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-# Google Cloud credentials
-google_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-if google_credentials:
-    try:
-        credentials_dict = json.loads(google_credentials)
-        GS_CREDENTIALS = service_account.Credentials.from_service_account_info(credentials_dict)
-    except json.JSONDecodeError as e:
-        raise ValueError("Invalid JSON format in Google credentials: " + str(e))
-else:
-    raise ValueError("Google credentials not found in environment variables")
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True  # Перенаправление HTTP -> HTTPS
 
-GS_BUCKET_NAME = os.getenv('GS_BUCKET_NAME', 'thequest_website_bucket')
-
-# Static and media files on Google Cloud Storage
-STATIC_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/static/'
-STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+# GCS настройки для медиа
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'thequest_website_bucket'
+GS_CREDENTIALS = os.path.join(BASE_DIR, 'google-credentials.json')
 
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/media/'
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 
-# Google Cloud Storage ACL
-GS_DEFAULT_ACL = 'publicRead'
+WHITENOISE_AUTOREFRESH = True
+WHITENOISE_USE_FINDERS = True
