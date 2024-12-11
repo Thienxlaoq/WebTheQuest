@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
+import base64
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,14 +21,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ('django-insecure-580hrnvq_8n#avbgsp!=)x3luf-)@t!5dovn2c5qx2%80=*uh%')
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'django-insecure-580hrnvq_8n#avbgsp!=)x3luf-)@t!5dovn2c5qx2%80=*uh%')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = ['www.thequest.pro', 'thequest.pro', 'thequest-72c3ecbb030c.herokuapp.com', 
-                 'crystalline-kangaroo-idxmc57hcytlvuga79qbm5y9.herokudns.com',
-                 'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com', 'localhost' , '127.0.0.1']
+ALLOWED_HOSTS = [
+    'www.thequest.pro', 'thequest.pro', 'thequest-72c3ecbb030c.herokuapp.com', 
+    'crystalline-kangaroo-idxmc57hcytlvuga79qbm5y9.herokudns.com',
+    'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com',
+    'localhost', '127.0.0.1'
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -43,11 +47,25 @@ INSTALLED_APPS = [
     'storages',
 ]
 
-CKEDITOR_CONFIGS = {
-    'default': {
-        'contentsCss': '/static/css/ckeditor_custom.css',
-    },
-}
+key_path = "/app/key.json"
+
+# Декодирование переменной Base64 в файл key.json
+credentials_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
+if not credentials_json:
+    raise ValueError("Переменная окружения GOOGLE_APPLICATION_CREDENTIALS_JSON не установлена")
+
+with open(key_path, "w") as f:
+    f.write(base64.b64decode(credentials_json).decode())
+
+# Установить переменную окружения для Google Cloud
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
+
+# Google Cloud Storage Configuration
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'thequestweb'
+
+# Ensure your credentials are available:
+GS_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS_JSON')  # Point this to the path of your service account JSON
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,7 +103,7 @@ WSGI_APPLICATION = 'thequest.wsgi.application'
 # Database
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
+        default=os.getenv('DATABASE_URL', 'postgres://user:password@localhost:5432/dbname')
     )
 }
 
@@ -106,8 +124,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = False
-
+SECURE_SSL_REDIRECT = True
 
 WHITENOISE_AUTOREFRESH = True
-WHITENOISE_USE_FINDERS = True
