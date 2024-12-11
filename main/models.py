@@ -12,6 +12,11 @@ class News(models.Model):
     is_visible = models.BooleanField(default=True, verbose_name="Показывать новость")
     is_featured = models.BooleanField(default=False, verbose_name="Отображать в главном блоке")
 
+    def save(self, *args, **kwargs):
+        if self.is_featured:
+            News.objects.filter(is_featured=True).update(is_featured=False)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return self.title
 
