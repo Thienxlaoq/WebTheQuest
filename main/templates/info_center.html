@@ -60,9 +60,9 @@
                                 <p class="news-date">{{ news.published_date }}</p>
                                 <h2 class="news-title">{{ news.title|safe }}</h2>
                                 <div class="news-buttons">
-                                    <button class="news-button small" onclick="shareNews('{{ request.build_absolute_uri(news.get_absolute_url) }}')">
+                                    <button class="news-button small" onclick="shareNews('{{ news.full_url }}')">
                                         <img src="{% static 'img/icon-share.svg' %}" alt="Share">
-                                    </button>
+                                    </button>                                    
                                     <a href="{% url 'news_detail' news.pk %}" class="news-button open">Open</a>
                                 </div>
                             </div>

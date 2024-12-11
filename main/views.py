@@ -1,16 +1,25 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import News, Event, Update
 
-
 def map(request):
     return render(request, 'map.html', {'active_page': 'map'})
-
 
 def info_center(request):
     section = request.GET.get('section', 'news')
     news_list = News.objects.filter(is_visible=True).order_by('-published_date')
     events_list = Event.objects.filter(is_visible=True).order_by('date')
     updates_list = Update.objects.filter(is_visible=True).order_by('-published_date')
+
+    # Добавление полного URL для каждой новости
+    for news in news_list:
+        news.full_url = request.build_absolute_uri(news.get_absolute_url())
+
+    # Добавление функциональности для событий и обновлений в будущем
+    for event in events_list:
+        event.full_url = request.build_absolute_uri('#')  # Заглушка, заменить на get_absolute_url()
+
+    for update in updates_list:
+        update.full_url = request.build_absolute_uri('#')  # Заглушка, заменить на get_absolute_url()
 
     featured_news = News.objects.filter(is_featured=True).first()
     featured_event = Event.objects.filter(is_featured=True).first()
@@ -27,11 +36,9 @@ def info_center(request):
         'active_section': section
     })
 
-
 def news_detail(request, pk):
     news_item = get_object_or_404(News, pk=pk)
     return render(request, 'news_detail.html', {'news_item': news_item})
-
 
 def profile(request):
     return render(request, 'profile.html', {'active_page': 'profile'})
