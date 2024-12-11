@@ -2,6 +2,7 @@ from django.db import models
 from ckeditor.fields import RichTextField
 import bleach
 from html import unescape
+from django.urls import reverse
 
 class News(models.Model):
     title = RichTextField(help_text="Вы можете использовать HTML или стилизовать текст с разными цветами.")
@@ -24,6 +25,8 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('news_detail', args=[self.pk])
 
 
 class Event(models.Model):
@@ -54,6 +57,10 @@ class Event(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('event_detail', args=[self.pk])  # Замените 'event_detail' на имя вашей страницы
+
 
 
 class Update(models.Model):
@@ -84,4 +91,7 @@ class Update(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse('update_detail', args=[self.pk])  # Замените 'update_detail' на имя вашей страницы
 

@@ -60,7 +60,7 @@
                                 <p class="news-date">{{ news.published_date }}</p>
                                 <h2 class="news-title">{{ news.title|safe }}</h2>
                                 <div class="news-buttons">
-                                    <button class="news-button small">
+                                    <button class="news-button small" onclick="shareNews('{{ request.build_absolute_uri(news.get_absolute_url) }}')">
                                         <img src="{% static 'img/icon-share.svg' %}" alt="Share">
                                     </button>
                                     <a href="{% url 'news_detail' news.pk %}" class="news-button open">Open</a>
@@ -95,7 +95,7 @@
                           <p class="event-date">{{ event.date|date:"d F Y H:i" }}</p>
                           <h2 class="event-title">{{ event.title|safe }}</h2>
                           <div class="news-buttons">
-                              <button class="event-button small">
+                              <button class="event-button small" onclick="shareNews('{{ request.build_absolute_uri(event.get_absolute_url) }}')">
                                   <img src="{% static 'img/icon-share.svg' %}" alt="Share">
                               </button>
                               <a href="#" class="news-button open">Open</a>
@@ -130,7 +130,7 @@
                   <p class="update-date">{{ update.published_date }}</p>
                   <h2 class="update-title">{{ update.title|safe }}</h2>
                   <div class="news-buttons">
-                      <button class="update-button small">
+                      <button class="event-button small" onclick="shareNews('{{ request.build_absolute_uri(update.get_absolute_url) }}')">
                           <img src="{% static 'img/icon-share.svg' %}" alt="Share">
                       </button>
                       <!-- Заглушка вместо ссылки -->
