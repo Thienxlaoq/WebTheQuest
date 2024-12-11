@@ -58,7 +58,7 @@ with open(key_path, "w") as f:
     f.write(base64.b64decode(credentials_json).decode())
 
 # Установить переменную окружения для Google Cloud
-os.environ["GOOGLE_APPLICATION_CREDENTIALS_JSON"] = key_path
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
 
 # Google Cloud Storage Configuration
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
@@ -103,7 +103,7 @@ WSGI_APPLICATION = 'thequest.wsgi.application'
 # Database
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'postgres://user:password@localhost:5432/dbname')
+        default=os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
     )
 }
 
