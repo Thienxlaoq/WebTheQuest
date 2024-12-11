@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['www.thequest.pro', 'thequest.pro', 'thequest-72c3ecbb030c.herokuapp.com', 
                  'crystalline-kangaroo-idxmc57hcytlvuga79qbm5y9.herokudns.com',
-                 'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com']
+                 'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com', 'localhost' , '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -106,7 +106,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+SECURE_SSL_REDIRECT = False
 
 
 WHITENOISE_AUTOREFRESH = True
