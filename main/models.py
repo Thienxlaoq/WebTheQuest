@@ -1,5 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+import bleach
 
 class News(models.Model):
     title = RichTextField(help_text="Вы можете использовать HTML или стилизовать текст с разными цветами.")
@@ -13,12 +14,14 @@ class News(models.Model):
     is_featured = models.BooleanField(default=False, verbose_name="Отображать в главном блоке")
 
     def save(self, *args, **kwargs):
+        self.description = bleach.clean(self.description, tags=[], strip=True)
         if self.is_featured:
             News.objects.filter(is_featured=True).update(is_featured=False)
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
+
 
 
 class Event(models.Model):
@@ -41,6 +44,7 @@ class Event(models.Model):
     )
 
     def save(self, *args, **kwargs):
+        self.description = bleach.clean(self.description, tags=[], strip=True)
         if self.is_featured:
             Event.objects.filter(is_featured=True).update(is_featured=False)
         super().save(*args, **kwargs)
@@ -69,9 +73,11 @@ class Update(models.Model):
     )
 
     def save(self, *args, **kwargs):
+        self.description = bleach.clean(self.description, tags=[], strip=True)
         if self.is_featured:
             Update.objects.filter(is_featured=True).update(is_featured=False)
         super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
+

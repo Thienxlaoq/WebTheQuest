@@ -47,25 +47,9 @@ INSTALLED_APPS = [
     'storages',
 ]
 
-key_path = "/app/key.json"
-
-# Декодирование переменной Base64 в файл key.json
-credentials_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
-if not credentials_json:
-    raise ValueError("Переменная окружения GOOGLE_APPLICATION_CREDENTIALS_JSON не установлена")
-
-with open(key_path, "w") as f:
-    f.write(base64.b64decode(credentials_json).decode())
-
-# Установить переменную окружения для Google Cloud
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = key_path
-
 # Google Cloud Storage Configuration
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequestweb'
-
-# Ensure your credentials are available:
-GS_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS_JSON')  # Point this to the path of your service account JSON
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
