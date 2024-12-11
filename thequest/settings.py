@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
-import base64
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,7 +50,6 @@ INSTALLED_APPS = [
 # Google Cloud Storage Configuration
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'thequestweb'
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
