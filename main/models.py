@@ -1,6 +1,7 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 import bleach
+from html import unescape
 
 class News(models.Model):
     title = RichTextField(help_text="Вы можете использовать HTML или стилизовать текст с разными цветами.")
@@ -15,6 +16,7 @@ class News(models.Model):
 
     def save(self, *args, **kwargs):
         self.description = bleach.clean(self.description, tags=[], strip=True)
+        self.description = unescape(self.description)
         if self.is_featured:
             News.objects.filter(is_featured=True).update(is_featured=False)
         super().save(*args, **kwargs)
@@ -45,6 +47,7 @@ class Event(models.Model):
 
     def save(self, *args, **kwargs):
         self.description = bleach.clean(self.description, tags=[], strip=True)
+        self.description = unescape(self.description)
         if self.is_featured:
             Event.objects.filter(is_featured=True).update(is_featured=False)
         super().save(*args, **kwargs)
@@ -74,6 +77,7 @@ class Update(models.Model):
 
     def save(self, *args, **kwargs):
         self.description = bleach.clean(self.description, tags=[], strip=True)
+        self.description = unescape(self.description)
         if self.is_featured:
             Update.objects.filter(is_featured=True).update(is_featured=False)
         super().save(*args, **kwargs)
