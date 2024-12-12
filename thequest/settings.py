@@ -86,19 +86,17 @@ UPLOAD_ROOT = "media/uploads/"
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 
 # Чтение переменной окружения с закодированным ключом
-from google.oauth2 import service_account
-from google.cloud import storage
-import json
-
-# Чтение переменной окружения с закодированным ключом
 encoded_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 if encoded_credentials:
-    credentials_info = json.loads(base64.b64decode(encoded_credentials).decode('utf-8'))
-    credentials = service_account.Credentials.from_service_account_info(credentials_info)
-    storage_client = storage.Client(credentials=credentials, project=credentials_info['thequest_bucket'])
+    # Декодируем ключ в файл
+    credentials_path = '/tmp/credential.json'
+    with open(credentials_path, 'wb') as f:
+        f.write(base64.b64decode(encoded_credentials))
+    # Устанавливаем путь к ключу
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
 else:
-    raise EnvironmentError("Google credentials not found. Please check your environment variable.")
+    print("Google credentials not found. Please check your environment variable.")
 
 
 
