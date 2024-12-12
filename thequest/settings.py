@@ -80,7 +80,7 @@ DATABASES = {
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_PROJECT_ID = 'thequest-404518'
-GS_BUCKET_NAME = 'thequestweb'
+GS_BUCKET_NAME = 'thequest_bucket'
 MEDIA_ROOT = "media/"
 UPLOAD_ROOT = "media/uploads/"
 MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
