@@ -1,40 +1,61 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render , get_object_or_404
+
+from django.http import HttpResponse
 from .models import News, Event, Update
 
 def map(request):
     return render(request, 'map.html', {'active_page': 'map'})
 
 def info_center(request):
-    section = request.GET.get('section', 'news')
-    news_list = News.objects.filter(is_visible=True).order_by('-published_date')
-    events_list = Event.objects.filter(is_visible=True).order_by('date')
-    updates_list = Update.objects.filter(is_visible=True).order_by('-published_date')
+    try:
+        # Получаем активный раздел (по умолчанию "news")
+        section = request.GET.get('section', 'news')
 
-    # Добавление полного URL для каждой новости
-    for news in news_list:
-        news.full_url = request.build_absolute_uri(news.get_absolute_url())
+        # Проверяем доступность данных
+        news_list = News.objects.filter(is_visible=True).order_by('-published_date') if News.objects.exists() else []
+        events_list = Event.objects.filter(is_visible=True).order_by('date') if Event.objects.exists() else []
+        updates_list = Update.objects.filter(is_visible=True).order_by('-published_date') if Update.objects.exists() else []
 
-    # Добавление функциональности для событий и обновлений в будущем
-    for event in events_list:
-        event.full_url = request.build_absolute_uri('#')  # Заглушка, заменить на get_absolute_url()
+        # Добавляем полные URL для новостей
+        for news in news_list:
+            if hasattr(news, 'get_absolute_url'):
+                news.full_url = request.build_absolute_uri(news.get_absolute_url())
+            else:
+                news.full_url = '#'  # Заглушка, если метод отсутствует
 
-    for update in updates_list:
-        update.full_url = request.build_absolute_uri('#')  # Заглушка, заменить на get_absolute_url()
+        # Аналогично для событий и обновлений
+        for event in events_list:
+            if hasattr(event, 'get_absolute_url'):
+                event.full_url = request.build_absolute_uri(event.get_absolute_url())
+            else:
+                event.full_url = '#'
 
-    featured_news = News.objects.filter(is_featured=True).first()
-    featured_event = Event.objects.filter(is_featured=True).first()
-    featured_update = Update.objects.filter(is_featured=True).first()
+        for update in updates_list:
+            if hasattr(update, 'get_absolute_url'):
+                update.full_url = request.build_absolute_uri(update.get_absolute_url())
+            else:
+                update.full_url = '#'
 
-    featured_item = featured_news or featured_event or featured_update
+        # Получение рекомендованных (featured) элементов
+        featured_news = News.objects.filter(is_featured=True).first() if News.objects.exists() else None
+        featured_event = Event.objects.filter(is_featured=True).first() if Event.objects.exists() else None
+        featured_update = Update.objects.filter(is_featured=True).first() if Update.objects.exists() else None
 
-    return render(request, 'info_center.html', {
-        'active_page': 'info_center',
-        'news_list': news_list,
-        'events_list': events_list,
-        'updates_list': updates_list,
-        'latest_news': featured_item,
-        'active_section': section
-    })
+        featured_item = featured_news or featured_event or featured_update
+
+        return render(request, 'info_center.html', {
+            'active_page': 'info_center',
+            'news_list': news_list,
+            'events_list': events_list,
+            'updates_list': updates_list,
+            'latest_news': featured_item,
+            'active_section': section
+        })
+
+    except Exception as e:
+        # Логируем ошибку и возвращаем сообщение
+        return HttpResponse(f"Произошла ошибка: {str(e)}", status=500)
+
 
 def news_detail(request, pk):
     news_item = get_object_or_404(News, pk=pk)
