@@ -14,10 +14,14 @@ import dj_database_url
 import os
 from decouple import config
 import base64
+from google.oauth2 import service_account
+from google.cloud import storage
+import json
+import base64
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('DJANGO_SECRET_KEY', default='небезопасный_секрет_для_локали')
+SECRET_KEY = config('DJANGO_SECRET_KEY')
 DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
@@ -89,10 +93,9 @@ MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 encoded_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 if encoded_credentials:
-    credentials_path = Path(__file__).resolve().parent / 'credential.json'
-    with open(credentials_path, 'wb') as f:
-        f.write(base64.b64decode(encoded_credentials))
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(credentials_path)
+    credentials_info = json.loads(base64.b64decode(encoded_credentials).decode('utf-8'))
+    credentials = service_account.Credentials.from_service_account_info(credentials_info)
+    storage_client = storage.Client(credentials=credentials, project=credentials_info['thequest-404518'])
 else:
     raise EnvironmentError("Google credentials not found. Please check your environment variable.")
 

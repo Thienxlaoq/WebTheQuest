@@ -3,6 +3,7 @@ from ckeditor.fields import RichTextField
 import bleach
 from html import unescape
 from django.urls import reverse
+from django.conf import settings
 
 class News(models.Model):
     title = RichTextField(help_text="Вы можете использовать HTML или стилизовать текст с разными цветами.")
@@ -18,6 +19,9 @@ class News(models.Model):
     def save(self, *args, **kwargs):
         self.description = bleach.clean(self.description, tags=[], strip=True)
         self.description = unescape(self.description)
+
+        print(f"Default file storage: {settings.DEFAULT_FILE_STORAGE}")
+        print(f"Image path: {self.news_image.name}")
         if self.is_featured:
             News.objects.filter(is_featured=True).update(is_featured=False)
         super().save(*args, **kwargs)
