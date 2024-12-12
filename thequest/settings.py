@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
-from decouple import config
 import base64
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -23,8 +22,6 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'www.thequest.pro', 'thequest.pro',
     'thequest-72c3ecbb030c.herokuapp.com', 
-    'crystalline-kangaroo-idxmc57hcytlvuga79qbm5y9.herokudns.com',
-    'evening-cardinal-lu0kx4iwnnjoym754j49soy3.herokudns.com',
     'localhost', '127.0.0.1'
 ]
 
