@@ -6,9 +6,10 @@ from django.urls import reverse
 from django.conf import settings
 
 class News(models.Model):
+
     class Meta:
         db_table = 'news'
-        
+
     title = RichTextField(help_text="Вы можете использовать HTML или стилизовать текст с разными цветами.")
     description = RichTextField(blank=True, verbose_name='Текст новости:')
     
@@ -18,16 +19,6 @@ class News(models.Model):
     published_date = models.DateField(auto_now_add=True, verbose_name='Дата публикации')
     is_visible = models.BooleanField(default=True, verbose_name="Показывать новость")
     is_featured = models.BooleanField(default=False, verbose_name="Отображать в главном блоке")
-
-    def save(self, *args, **kwargs):
-        self.description = bleach.clean(self.description, tags=[], strip=True)
-        self.description = unescape(self.description)
-
-        print(f"Saving {self.news_image.name} to Google Cloud Storage...")
-        print(f"File {self.news_image.name} saved successfully.")
-        if self.is_featured:
-            News.objects.filter(is_featured=True).update(is_featured=False)
-        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
