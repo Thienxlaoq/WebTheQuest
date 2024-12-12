@@ -78,6 +78,10 @@ DATABASES = {
     )
 }
 
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_PROJECT_ID = 'thequest-404518'
+GS_BUCKET_NAME = 'thequestweb'
+
 # Чтение переменной окружения с закодированным ключом
 encoded_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
@@ -91,8 +95,7 @@ if encoded_credentials:
 else:
     print("Google credentials not found. Please check your environment variable.")
 
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'thequestweb'
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
