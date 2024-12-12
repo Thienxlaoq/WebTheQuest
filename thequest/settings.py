@@ -73,10 +73,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'thequest.wsgi.application'
 
 DATABASES = {
-    'default': dj_database_url.parse(
-        'postgres://udqbuqhao9fis3:p649ae26617c499fee51a6eb5bd47d76910d13c01f068add6bd23f459caa435e8@cav8p52l9arddb.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/d1r4t4fkako5c',
-        conn_max_age=600,
-        ssl_require=True
+    'default': dj_database_url.config(
+        default=os.getenv('DATABASE_URL', 'sqlite:///db.sqlite3')
     )
 }
 
