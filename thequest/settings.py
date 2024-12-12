@@ -13,6 +13,7 @@ from pathlib import Path
 import dj_database_url
 import os
 from decouple import config
+import base64
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,9 +40,6 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',
     'storages',
 ]
-
-DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
-GS_BUCKET_NAME = 'thequestweb'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,6 +79,22 @@ DATABASES = {
         ssl_require=True
     )
 }
+
+# Чтение переменной окружения с закодированным ключом
+encoded_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
+
+if encoded_credentials:
+    # Декодируем ключ в файл
+    credentials_path = '/tmp/credential.json'
+    with open(credentials_path, 'wb') as f:
+        f.write(base64.b64decode(encoded_credentials))
+    # Устанавливаем путь к ключу
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
+else:
+    print("Google credentials not found. Please check your environment variable.")
+
+DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+GS_BUCKET_NAME = 'thequestweb'
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
