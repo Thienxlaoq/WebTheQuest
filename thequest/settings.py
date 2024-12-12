@@ -99,7 +99,6 @@ else:
     print("Google credentials not found. Please check your environment variable.")
 
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
     {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
