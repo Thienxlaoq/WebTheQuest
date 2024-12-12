@@ -14,6 +14,28 @@ import dj_database_url
 import os
 from decouple import config
 import base64
+import logging
+
+# Настройка логирования
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        'google.cloud': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
