@@ -89,14 +89,12 @@ MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 encoded_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 if encoded_credentials:
-    # Декодируем ключ в файл
-    credentials_path = '/tmp/credential.json'
+    credentials_path = Path(__file__).resolve().parent / 'credential.json'
     with open(credentials_path, 'wb') as f:
         f.write(base64.b64decode(encoded_credentials))
-    # Устанавливаем путь к ключу
-    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = credentials_path
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(credentials_path)
 else:
-    print("Google credentials not found. Please check your environment variable.")
+    raise EnvironmentError("Google credentials not found. Please check your environment variable.")
 
 
 AUTH_PASSWORD_VALIDATORS = [
