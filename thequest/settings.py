@@ -83,7 +83,7 @@ GS_PROJECT_ID = 'thequest-404518'
 GS_BUCKET_NAME = 'thequestweb'
 MEDIA_ROOT = "media/"
 UPLOAD_ROOT = "media/uploads/"
-MEDIA_URL = 'https://storage.googleapis.com/{}/'.format(GS_BUCKET_NAME)
+MEDIA_URL = f'https://storage.googleapis.com/{GS_BUCKET_NAME}/'
 
 # Чтение переменной окружения с закодированным ключом
 encoded_credentials = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
