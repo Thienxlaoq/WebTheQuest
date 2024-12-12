@@ -27,6 +27,9 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return reverse('news_detail', args=[self.pk])
+    
+    class Meta:
+        db_table = 'news'
 
 
 class Event(models.Model):
@@ -60,6 +63,9 @@ class Event(models.Model):
     
     def get_absolute_url(self):
         return reverse('event_detail', args=[self.pk])  # Замените 'event_detail' на имя вашей страницы
+    
+    class Meta:
+        db_table = 'event'
 
 
 
@@ -94,4 +100,7 @@ class Update(models.Model):
     
     def get_absolute_url(self):
         return reverse('update_detail', args=[self.pk])  # Замените 'update_detail' на имя вашей страницы
+    
+    class Meta:
+        db_table = 'update'
 
