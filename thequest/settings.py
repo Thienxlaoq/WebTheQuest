@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from pathlib import Path
+from google.cloud import storage
 import dj_database_url
 import os
 from decouple import config
@@ -78,6 +79,7 @@ DATABASES = {
     )
 }
 
+client = storage.Client()
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_PROJECT_ID = 'thequest-404518'
 GS_BUCKET_NAME = 'thequest_bucket'
