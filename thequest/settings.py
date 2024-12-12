@@ -18,7 +18,7 @@ import base64
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', 'your-secret-key')
-DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
+DEBUG = False
 
 ALLOWED_HOSTS = [
     'www.thequest.pro', 'thequest.pro',
