@@ -21,7 +21,7 @@ import base64
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = config('DJANGO_SECRET_KEY')
+SECRET_KEY = config('django-insecure-580hrnvq_8n#avbgsp!=)x3luf-)@t!5dovn2c5qx2%80=*uh%')
 DEBUG = config('DJANGO_DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = [
