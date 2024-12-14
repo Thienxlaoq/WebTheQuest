@@ -22,7 +22,7 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'www.thequest.pro', 'thequest.pro',
     'thequest-72c3ecbb030c.herokuapp.com', 
-    'localhost', '127.0.0.1'
+    'localhost', '127.0.0.1', '*.thequest.pro'
 ]
 
 INSTALLED_APPS = [
@@ -116,5 +116,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 SECURE_SSL_REDIRECT = True
