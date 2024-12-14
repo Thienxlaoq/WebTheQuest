@@ -1,9 +1,7 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     const languageSwitch = document.querySelector('.language-switch');
     const languageMenu = document.querySelector('.language-menu');
     const arrowIcon = languageSwitch?.querySelector('.arrow-icon');
-    const currentLanguageElement = document.getElementById('current-language');
 
     if (!languageSwitch || !languageMenu || !arrowIcon) {
         console.warn('Language switch elements are not fully defined.');
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const setLanguage = (lang) => {
         localStorage.setItem('language', lang);
         document.documentElement.lang = lang;
-        currentLanguageElement.textContent = lang === 'en' ? 'English' : 'Русский';
         applyTranslations(lang);
     };
 
@@ -38,10 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
         arrowIcon.classList.toggle('arrow-rotated', isOpen);
     };
 
-        // Load saved language or default to English
+    // Load saved language or default to English
     const savedLanguage = localStorage.getItem('language') || 'en';
-        setLanguage(savedLanguage);
-    
+    setLanguage(savedLanguage);
 
     // Toggle menu on click
     languageSwitch.addEventListener('click', (event) => {
@@ -54,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     languageMenu.addEventListener('click', (event) => {
         if (event.target.tagName === 'LI') {
             const selectedLanguage = event.target.dataset.lang;
-            console.log(`Selected language: ${selectedLanguage}`);
+            setLanguage(selectedLanguage);
             toggleMenu(false); // Close menu after selection
         }
     });
