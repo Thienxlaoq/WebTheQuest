@@ -8,6 +8,11 @@ body, html {
   line-height: 1.6;
 }
 
+::selection {
+  background: transparent; 
+  color: #FF4E47; 
+}
+
 .privacy {
   display: flex;
   justify-content: center;

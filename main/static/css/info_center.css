@@ -85,10 +85,10 @@ body {
 .main-content p {
     font-size: 15px;
     font-weight: 500;
-    border: solid 3px #5EF5FF;
+    border: solid 2px #5EF5FF;
     border-radius: 5px;
     color: #5EF5FF;
-    background: rgb(94, 246, 255, 15%);
+    background: rgb(94, 246, 255, 0.15);
     height: 31px;
     width: 150px;
     display: flex;

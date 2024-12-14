@@ -21,6 +21,10 @@ body, html {
     font-family: var(--font-family);
 }
 
+::selection {
+    background: transparent; 
+    color: #FF4E47; 
+}
 
 .scroll-container {
     position: relative;

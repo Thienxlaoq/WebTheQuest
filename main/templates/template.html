@@ -29,16 +29,16 @@
           <a href="/map"><img src="/static/img/logoquest.png" alt="The Quest Logo"></a>
       </div>
       <div class="header-right">
-          <div class="language-switch">
+        <div class="language-switch" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0">
             <img src="/static/img/language-icon.svg" class="icon" alt="Language Icon">
-            <span>Select language</span>
+            <span class="current-language">Select language</span>
             <img src="/static/img/arrow-icon.svg" class="arrow-icon" alt="Arrow Icon">
-            <ul class="language-menu">
-                <li data-lang="en">English</li>
-                <li data-lang="ru">Русский</li>
+            <ul class="language-menu" role="menu" hidden>
+                <li data-lang="en" role="menuitem" tabindex="0">English</li>
+                <li data-lang="ru" role="menuitem" tabindex="0">Русский</li>
             </ul>
         </div>
-          
+    
           <button class="our-socials-btn socials">OUR SOCIALS</button>
           <div id="overlay" style="display: none;">
             <div id="content-block">
