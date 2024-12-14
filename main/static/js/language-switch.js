@@ -26,9 +26,22 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const applyTranslations = (lang) => {
-        document.querySelector('h1.yellow').textContent = translations[lang].questsTitle;
-        document.querySelector('h1.green').textContent = translations[lang].friendsTitle;
+        const questsTitleElement = document.querySelector('h1.yellow');
+        const friendsTitleElement = document.querySelector('h1.green');
+        
+        if (questsTitleElement) {
+            questsTitleElement.textContent = translations[lang].questsTitle;
+        } else {
+            console.warn('Element h1.yellow not found in the DOM.');
+        }
+    
+        if (friendsTitleElement) {
+            friendsTitleElement.textContent = translations[lang].friendsTitle;
+        } else {
+            console.warn('Element h1.green not found in the DOM.');
+        }
     };
+    
 
     const toggleMenu = (isOpen) => {
         languageMenu.classList.toggle('language-menu-active', isOpen);
