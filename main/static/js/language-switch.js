@@ -12,8 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Переводы для всех страниц
     const translations = {
         en: {
+            questsTitle: 'Quests around the world!',
+            friendsTitle: 'Meet with friends and play together!',
         },
         ru: {
+            questsTitle: 'Квесты по всему миру!',
+            friendsTitle: 'Встречайтесь с друзьями и играйте вместе!',
         },
     };
 
