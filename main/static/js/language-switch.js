@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const languageMenu = document.querySelector('.language-menu');
     const arrowIcon = languageSwitch?.querySelector('.arrow-icon');
 
+    // Проверяем наличие основных элементов меню
     if (!languageSwitch || !languageMenu || !arrowIcon) {
-        console.warn('Language switch elements are not fully defined.');
-        return;
+        console.warn('Language switch elements are not fully defined on this page.');
+        return; // Прерываем выполнение, если меню недоступно
     }
 
     // Переводы для всех страниц
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (element) {
                 element.textContent = translations[lang][key];
             } else {
-                console.info(`Element ${selector} not found in the DOM.`);
+                console.info(`Translation skipped: Element ${selector} not found in the DOM.`);
             }
         });
     };
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.target.tagName === 'LI') {
             const selectedLanguage = event.target.dataset.lang;
             setLanguage(selectedLanguage);
-            toggleMenu(false);
+            toggleMenu(false); // Закрываем меню после выбора
         }
     });
 
