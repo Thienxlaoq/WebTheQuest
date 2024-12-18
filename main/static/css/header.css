@@ -244,8 +244,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     color: #4B4B4B;
 }
 
@@ -380,8 +380,8 @@
     }
 
     #close-block {
-        width: 15px; 
-        height: 15px; 
+        width: 20px; 
+        height: 20px; 
     }
     
     #close-block img {
@@ -433,6 +433,10 @@
     /* Контейнер для правых элементов */
     .header-right {
         gap: 15px; /* Расстояние между кнопкой и переключателем языка */
+    }
+
+    #socials { 
+        gap: 2px; 
     }
 
 }
