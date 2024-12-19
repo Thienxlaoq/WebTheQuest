@@ -19,9 +19,6 @@ body, html {
   width: 80%;
   max-width: 950px;
   margin: 50px auto;
-  background-color: rgb(0, 0, 0);
-  border: 1px solid #2F2F2F;
-  border-radius: 10px;
   padding: 50px;
   display: flex;
   flex-direction: column;
