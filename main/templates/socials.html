@@ -7,6 +7,12 @@
 
 {% block body %}
 <main>
+  <a href="{% url 'news_list' %}" class="news__back-link">
+    <svg xmlns="http://www.w3.org/2000/svg" class="news__back-icon" viewBox="0 0 24 24">
+      <polyline points="15 18 9 12 15 6"></polyline>
+    </svg>
+    BACK TO NEWS
+  </a>
   <div class="centered-block">
     <div class="social-links">
       <a href="https://www.tiktok.com/@thequestgame?_t=8sJewdSN5QP&_r=1" target="_blank"><img src="{% static 'img/ic-tt.png' %}" alt="The Quest TikTok"></a>
