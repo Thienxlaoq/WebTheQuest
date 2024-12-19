@@ -26,7 +26,7 @@ main {
 }
 
 .centered-block {
-  padding: 32px 78px;
+  padding: 32px 65px;
   border-radius: 40px;
   /*background: url(/static/img/socials-bg.png) no-repeat center;*/
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.5);
@@ -39,7 +39,7 @@ main {
 
 .social-links {
   display: flex;
-  gap: 40px; /* Расстояние между иконками */
+  gap: 35px; /* Расстояние между иконками */
   justify-content: center;
   flex-wrap: wrap; /* Для адаптивного расположения иконок */
 }
@@ -91,7 +91,7 @@ main {
   }
 
   .social-links {
-    gap: 20px; /* Уменьшаем расстояние между иконками */
+    gap: 10px; /* Уменьшаем расстояние между иконками */
   }
 
 }
