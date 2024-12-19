@@ -1,3 +1,18 @@
+:root {
+  --color-background: #000000;
+  --color-primary: #ffffff;
+  --color-secondary: #7d7d7d;
+  --color-accent: #ffce00;
+  --font-family: 'Chakra Petch', sans-serif;
+}
+
+body, html {
+  background-color: var(--color-background);
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+}
+
 #content-block {
   width: 80%;
   max-width: 950px;
