@@ -44,8 +44,8 @@ main {
 }
 
 .social-links a img {
-  width: auto; /* Размер иконок */
-  height: auto;
+  width: 100%; /* Размер иконок */
+  height: 100%;
   transition: transform 0.2s ease;
   object-fit: contain; 
 }
