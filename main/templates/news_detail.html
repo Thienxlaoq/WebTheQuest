@@ -26,7 +26,7 @@
 
     <!-- Основной текст новости -->
     <div class="news__content">
-      {{ news_item.description|linebreaks |safe }}
+      {{ news_item.description|linebreaks |striptags}}
     </div>
   </div>
 </main>
