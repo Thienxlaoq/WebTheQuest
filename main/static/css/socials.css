@@ -10,7 +10,7 @@
   --font-size-date: 1.25rem;
 
   --spacing-small: 10px;
-  --spacing-medium: 25px;
+  --spacing-medium: 40px;
   --spacing-large: 50px;
   --spacing-xlarge: 200px;
 }
@@ -29,7 +29,7 @@ body, html {
 
 main {
   width: 100%;
-  height: 75%;
+  height: 70%;
   display: flex;
   justify-content: center;
   align-items: center;
