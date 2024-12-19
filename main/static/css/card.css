@@ -74,7 +74,7 @@
     margin-top: auto;
   }
   
-  .news-button, .event-button, .update-button {
+  .news-button, .event-button, .update-button, .socials-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -131,7 +131,7 @@
   }
 
   .socials-button.open{
-    width: 150px;
+    width: 80px;
     height: 40px;
     background-color: #FFCE00;
   }
@@ -141,11 +141,6 @@
     color: #FFCE00;
     border: 1px solid #FFCE00;
   }
-
-  .socials-button.small {
-    border: 1px solid #FFCE00; /* Обводка 1px */
-  }
-  
   
   @media (max-width: 1000px) {
 
