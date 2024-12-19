@@ -122,6 +122,13 @@
     width: 20px; /* Устанавливаем размер иконки */
     height: 20px;
   }
+
+  .socials-bg{
+    background-image: url(/static/img/oursocialsbg.png); 
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center; 
+  }
   
   
   @media (max-width: 1000px) {
