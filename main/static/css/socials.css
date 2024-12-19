@@ -19,7 +19,7 @@ body, html {
 
 main {
   width: 100%;
-  height: 100%;
+  height: 75%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,8 +44,8 @@ main {
 }
 
 .social-links a img {
-  width: 150px; /* Размер иконок */
-  height: 150px;
+  width: auto; /* Размер иконок */
+  height: auto;
   transition: transform 0.2s ease;
 }
 
