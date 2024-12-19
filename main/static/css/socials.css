@@ -12,43 +12,68 @@ body, html {
   margin: 0;
   padding: 0;
   font-family: var(--font-family);
-}
-
-::selection {
-  background: transparent; 
-  color: #FF4E47; 
-}
-
-main {
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+main {
+  width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .centered-block {
   padding: 32px 78px;
   border-radius: 40px;
   background: url(/static/img/socials-bg.png) no-repeat center;
+  background-size: cover;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.5);
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 .social-links {
   display: flex;
-  gap: 40px; /* Расстояние между иконками */
-  align-items: center;
+  gap: 30px; /* Расстояние между иконками */
+  justify-content: center;
+  flex-wrap: wrap; /* Для адаптивного расположения иконок */
 }
 
 .social-links a img {
-  width: auto; /* Размер иконок */
-  height: auto;
+  width: 60px; /* Размер иконок */
+  height: 60px;
   transition: transform 0.2s ease;
 }
 
 .social-links a img:hover {
   transform: scale(1.1); /* Эффект увеличения при наведении */
+}
+
+@media (max-width: 768px) {
+  .centered-block {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .social-links a img {
+    width: 50px; /* Уменьшаем размер иконок на маленьких экранах */
+    height: 50px;
+  }
+
+  .social-links {
+    gap: 20px; /* Уменьшаем расстояние между иконками */
+  }
+}
+
+@media (max-width: 480px) {
+  .social-links a img {
+    width: 40px; /* Еще меньше размер для мобильных */
+    height: 40px;
+  }
 }
