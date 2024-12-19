@@ -85,15 +85,14 @@
   }
   
   .news-button.open, .event-button.open, .update-button.open , .socials-button.open {
-    width: 80px;
-    height: 40px;
+    padding: 10px 20px; /* Делаем кнопку гибкой по ширине */
     background-color: #5ef6ff;
     font-size: 22px;
     font-weight: 600;
     font-family: 'Chakra Petch', sans-serif;
     color: #000;
     text-decoration: none;
-    display: flex;
+    display: inline-flex; 
     justify-content: center;
     align-items: center;
     transition: all 0.2s ease;
