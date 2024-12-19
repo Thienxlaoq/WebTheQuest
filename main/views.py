@@ -81,3 +81,6 @@ def loading_page(request):
 
 def socials_page(request):
     return render(request, 'socials.html')
+
+def jobs_page(request):
+    return render(request, 'jobs.html')

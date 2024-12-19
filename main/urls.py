@@ -12,6 +12,7 @@ urlpatterns = [
     path('news/', views.info_center, name='news_list'),
     path('privacy_policy/', views.privacy_policy, name='privacy_policy'),
     path('socials/', views.socials_page, name='socials_page'),
+    path('jobs/', views.jobs_page, name='jobs_page'),
     
 ]
 

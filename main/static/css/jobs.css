@@ -1,0 +1,49 @@
+/* privacy-policy.css */
+body, html {
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+  font-family: 'Chakra Petch', sans-serif;
+  color: #fff;
+  line-height: 1.6;
+}
+
+::selection {
+  background: transparent; 
+  color: #FF4E47; 
+}
+
+.privacy {
+  display: flex;
+  justify-content: center;
+  padding: 100px 20px;
+}
+
+.privacy-detail {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.privacy-title {
+  font-size: clamp(2.5rem, 5vw, 6rem);
+  text-align: center;
+  margin-bottom: 4rem;
+  line-height: 1;
+}
+
+.privacy-content {
+  font-size: 1.125rem;
+  /*text-align: justify;*/
+  margin-top: 200px;
+  text-align: center;
+  color: #5EF6FF;
+}
+
+.privacy-content ul {
+  padding-left: 1.5rem;
+  list-style: disc;
+}
+
+.privacy-content ul li {
+  margin-bottom: 0.5rem;
+}
