@@ -67,6 +67,16 @@ TEMPLATES = [
     },
 ]
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'autoParagraph': True,  # Включает обёртку текста в <p>
+        'enterMode': 1,  # Использует <p> для переноса строк
+        'shiftEnterMode': 2,  # Использует <br> для переноса строк с Shift+Enter
+    }
+}
+
+
 WSGI_APPLICATION = 'thequest.wsgi.application'
 
 DATABASES = {
