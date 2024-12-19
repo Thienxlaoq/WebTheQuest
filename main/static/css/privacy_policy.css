@@ -33,7 +33,10 @@ body, html {
 
 .privacy-content {
   font-size: 1.125rem;
-  text-align: justify;
+  /*text-align: justify;*/
+  margin-top: 200px;
+  text-align: center;
+  color: #5EF6FF;
 }
 
 .privacy-content ul {
