@@ -440,11 +440,3 @@
     }
 
 }
-
-@media (max-width: 400px) {
-
-    .header {
-        padding: 0px 30px; 
-    }
-
-}
