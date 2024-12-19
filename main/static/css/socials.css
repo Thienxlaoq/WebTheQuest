@@ -20,8 +20,12 @@ body, html {
   color: #FF4E47; 
 }
 
-main{
-  padding: 250px;
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 250px;
 }
 
 .centered-block {
@@ -30,4 +34,23 @@ main{
   background: url(/static/img/socials-bg.png) no-repeat center center/cover;
   opacity: 0.5;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-links {
+  display: flex;
+  gap: 20px; /* Расстояние между иконками */
+}
+
+.social-links a img {
+  width: 50px; /* Размер иконок */
+  height: 50px;
+  transition: transform 0.2s ease;
+}
+
+.social-links a img:hover {
+  transform: scale(1.1); /* Эффект увеличения при наведении */
 }
