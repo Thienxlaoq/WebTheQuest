@@ -82,6 +82,7 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 12px;
+    box-sizing: border-box; 
   }
   
   .news-button.open, .event-button.open, .update-button.open , .socials-button.open {
