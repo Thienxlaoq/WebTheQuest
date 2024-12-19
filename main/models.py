@@ -1,6 +1,5 @@
 from django.db import models
 from ckeditor.fields import RichTextField
-import bleach
 from html import unescape
 from django.urls import reverse
 from django.conf import settings
@@ -21,12 +20,11 @@ class News(models.Model):
     is_featured = models.BooleanField(default=False, verbose_name="Отображать в главном блоке")
 
     def save(self, *args, **kwargs):
-        # Уберите bleach.clean, чтобы оставить CKEditor форматирование
-        self.description = unescape(self.description)  # Декодирует HTML-сущности, если они были добавлены
+        self.title = unescape(self.title)
+        self.description = unescape(self.description) 
         if self.is_featured:
             News.objects.filter(is_featured=True).update(is_featured=False)
         super().save(*args, **kwargs)
-
 
     def __str__(self):
         return self.title
@@ -37,6 +35,10 @@ class News(models.Model):
 
 
 class Event(models.Model):
+
+    class Meta:
+        db_table = 'event'
+
     title = RichTextField(max_length=255, verbose_name='Название события')
     description = models.TextField(verbose_name='Описание события:')
     date = models.DateTimeField(verbose_name='Дата события')
@@ -56,7 +58,7 @@ class Event(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        self.description = bleach.clean(self.description, tags=[], strip=True)
+        self.title = unescape(self.title)
         self.description = unescape(self.description)
         if self.is_featured:
             Event.objects.filter(is_featured=True).update(is_featured=False)
@@ -67,13 +69,14 @@ class Event(models.Model):
     
     def get_absolute_url(self):
         return reverse('event_detail', args=[self.pk])  # Замените 'event_detail' на имя вашей страницы
-    
-    class Meta:
-        db_table = 'event'
 
 
 
 class Update(models.Model):
+
+    class Meta:
+        db_table = 'update'
+
     title = RichTextField(max_length=255, verbose_name='Название обновления')
     content = models.TextField(verbose_name='Описание обновления:')
     published_date = models.DateField(auto_now_add=True, verbose_name='Дата публикации')
@@ -93,7 +96,7 @@ class Update(models.Model):
     )
 
     def save(self, *args, **kwargs):
-        self.description = bleach.clean(self.description, tags=[], strip=True)
+        self.title = unescape(self.title)
         self.description = unescape(self.description)
         if self.is_featured:
             Update.objects.filter(is_featured=True).update(is_featured=False)
@@ -105,6 +108,3 @@ class Update(models.Model):
     def get_absolute_url(self):
         return reverse('update_detail', args=[self.pk])  # Замените 'update_detail' на имя вашей страницы
     
-    class Meta:
-        db_table = 'update'
-
