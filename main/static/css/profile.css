@@ -219,6 +219,9 @@ p{
         flex-direction: column; /* Элементы отображаются в столбик */
         gap: 40px;
     }
+    .text-container .hashtags p:hover {
+        pointer-events: none; 
+    }
 }
 
 @media (max-width: 520px) {
