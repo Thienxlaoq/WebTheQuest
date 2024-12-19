@@ -130,8 +130,6 @@
   }
 
   .socials-button.open{
-    width: 80px;
-    height: 40px;
     background-color: #FFCE00;
   }
 
@@ -207,9 +205,8 @@
     max-height: 200px;
   }
 
-  .news-button.open, .event-button.open, .update-button.open {
-    width: 70px;
-    height: 30px;
+  .news-button.open, .event-button.open, .update-button.open , .socials-button.open  {
+    padding: 8px 14px; /* Делаем кнопку гибкой по ширине */
     background-color: #5ef6ff;
     font-size: 18px;
     font-weight: 600;
