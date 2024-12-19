@@ -48,6 +48,25 @@
         <!-- Секция News -->
         <div class="content" id="news">
             <div class="news-container">
+
+                <div class="news-card">
+                    <div class="news-image">
+                        <a href="#">
+                            <img src="{% static 'img/oursocials.png' %}" alt="">
+                        </a>
+                    </div>                            
+                    <div class="news-content" style="background-image: url('');">
+                        <p class="news-date"></p>
+                        <h2 class="news-title"></h2>
+                        <div class="news-buttons">
+                            <button class="news-button small" onclick="shareNews('')">
+                                <img src="{% static 'img/icon-share.svg' %}" alt="Share">
+                            </button>                                    
+                            <a href="#" class="news-button open">Open</a>
+                        </div>
+                    </div>
+                </div>
+
                 {% if news_list %}
                     {% for news in news_list %}
                         <div class="news-card">
