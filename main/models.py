@@ -21,7 +21,12 @@ class News(models.Model):
     is_featured = models.BooleanField(default=False, verbose_name="Отображать в главном блоке")
 
     def save(self, *args, **kwargs):
-        self.description = bleach.clean(self.description, tags=[], strip=True)
+        self.description = bleach.clean(
+            self.description,
+            tags=['p', 'br', 'ul', 'li', 'b', 'i', 'strong', 'em'],  # Разрешённые теги
+            attributes={},  # Если нужны атрибуты, их можно указать
+            strip=True
+        )
         self.description = unescape(self.description)
         if self.is_featured:
             News.objects.filter(is_featured=True).update(is_featured=False)
