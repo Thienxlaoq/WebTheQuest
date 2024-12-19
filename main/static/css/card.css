@@ -85,7 +85,7 @@
   }
   
   .news-button.open, .event-button.open, .update-button.open , .socials-button.open {
-    padding: 10px 20px; /* Делаем кнопку гибкой по ширине */
+    padding: 0px 20px; /* Делаем кнопку гибкой по ширине */
     background-color: #5ef6ff;
     font-size: 22px;
     font-weight: 600;
@@ -105,7 +105,7 @@
     border: 1px solid #5ef6ff;
   }
   
-  .news-button.small, .event-button.small, .update-button.small , .socials-button.small {
+  .news-button.small, .event-button.small, .update-button.small {
     width: 40px;
     height: 40px;
     background-color: transparent; /* Прозрачный фон */
@@ -206,10 +206,14 @@
   }
 
   .news-button.open, .event-button.open, .update-button.open , .socials-button.open  {
-    padding: 8px 14px; /* Делаем кнопку гибкой по ширине */
+    padding: 0px 14px; /* Делаем кнопку гибкой по ширине */
     background-color: #5ef6ff;
     font-size: 18px;
     font-weight: 600;
+  }
+
+  .socials-button.open  {
+    background-color: #FFCE00;
   }
 
   .news-button.small, .event-button.small, .update-button.small {
