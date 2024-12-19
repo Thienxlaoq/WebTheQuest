@@ -65,13 +65,24 @@ main {
   .centered-block {
     margin: 0 100px;
   }
+  
+  .social-links a img{
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 900px) {
+  .centered-block {
+    margin: 0 100px;
+  }
 }
 
 @media (max-width: 768px) {
   .centered-block {
     padding: 20px;
     border-radius: 20px;
-    margin: 0 20px;
+    margin: 0 50px;
   }
 
   .social-links a img {
@@ -86,6 +97,11 @@ main {
 }
 
 @media (max-width: 480px) {
+
+  .centered-block {
+    margin: 0 20px;
+  }
+
   .social-links a img {
     width: 40px; /* Еще меньше размер для мобильных */
     height: 40px;
