@@ -31,7 +31,6 @@ main {
   padding: 32px 78px;
   border-radius: 40px;
   background: url(/static/img/socials-bg.png) no-repeat center;
-  opacity: 0.5;
   box-shadow: 0 0px 15px rgba(0, 0, 0, 0.5);
   position: relative;
   display: flex;
@@ -41,7 +40,8 @@ main {
 
 .social-links {
   display: flex;
-  gap: 20px; /* Расстояние между иконками */
+  gap: 40px; /* Расстояние между иконками */
+  align-items: center;
 }
 
 .social-links a img {
