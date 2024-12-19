@@ -11,7 +11,8 @@ urlpatterns = [
     path('news/<int:pk>/', views.news_detail, name='news_detail'),
     path('news/', views.info_center, name='news_list'),
     path('privacy_policy/', views.privacy_policy, name='privacy_policy'),
-
+    path('socials/', views.socials_page, name='socials_page'),
+    
 ]
 
 if settings.DEBUG:

@@ -8,6 +8,10 @@ def map(request):
 
 def info_center(request):
     try:
+
+        # Получаем полный URL для страницы socials
+        socials_url = request.build_absolute_uri('/socials/')
+
         # Получаем активный раздел (по умолчанию "news")
         section = request.GET.get('section', 'news')
 
@@ -49,7 +53,8 @@ def info_center(request):
             'events_list': events_list,
             'updates_list': updates_list,
             'latest_news': featured_item,
-            'active_section': section
+            'active_section': section,
+            'socials_url': socials_url,
         })
 
     except Exception as e:
@@ -73,3 +78,6 @@ def error_page(request, exception=None):
 def loading_page(request):
     # Отображение загрузочной страницы
     return render(request, 'loading.html')
+
+def socials_page(request):
+    return render(request, 'socials.html')
