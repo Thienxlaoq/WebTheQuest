@@ -84,7 +84,7 @@
     margin-top: 12px;
   }
   
-  .news-button.open, .event-button.open, .update-button.open {
+  .news-button.open, .event-button.open, .update-button.open , .socials-button.open {
     width: 80px;
     height: 40px;
     background-color: #5ef6ff;
@@ -106,7 +106,7 @@
     border: 1px solid #5ef6ff;
   }
   
-  .news-button.small, .event-button.small, .update-button.small {
+  .news-button.small, .event-button.small, .update-button.small , .socials-button.small {
     width: 40px;
     height: 40px;
     background-color: transparent; /* Прозрачный фон */
@@ -128,6 +128,22 @@
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center; 
+  }
+
+  .socials-button.open{
+    width: 150px;
+    height: 40px;
+    background-color: #FFCE00;
+  }
+
+  .socials-button.open:hover{
+    background-color: transparent;
+    color: #FFCE00;
+    border: 1px solid #FFCE00;
+  }
+
+  .socials-button.small {
+    border: 1px solid #FFCE00; /* Обводка 1px */
   }
   
   
