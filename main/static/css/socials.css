@@ -34,6 +34,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  margin: 0 250px;
 }
 
 .social-links {
@@ -54,10 +55,23 @@ main {
   transform: scale(1.1); /* Эффект увеличения при наведении */
 }
 
+@media (max-width: 1400px) {
+  .centered-block {
+    margin: 0 150px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .centered-block {
+    margin: 0 150px;
+  }
+}
+
 @media (max-width: 768px) {
   .centered-block {
     padding: 20px;
     border-radius: 20px;
+    margin: 0 20px;
   }
 
   .social-links a img {
@@ -68,6 +82,7 @@ main {
   .social-links {
     gap: 20px; /* Уменьшаем расстояние между иконками */
   }
+
 }
 
 @media (max-width: 480px) {
