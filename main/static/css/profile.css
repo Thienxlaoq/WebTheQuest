@@ -220,7 +220,7 @@ p{
         gap: 40px;
     }
     .text-container .hashtags p:hover {
-        pointer-events: none; 
+        background-color: transparent;
     }
 }
 
