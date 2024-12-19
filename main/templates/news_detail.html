@@ -1,7 +1,7 @@
 {% extends 'template.html' %}
 {% load static %}
 
-{% block title %}{{ news_item.title }}{% endblock %}
+{% block title %}{{ news_item.title|safe }}{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/news_detail.css' %}" type="text/css">
