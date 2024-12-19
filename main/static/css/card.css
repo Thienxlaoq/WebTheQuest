@@ -103,6 +103,7 @@
   .news-button.open:hover, .event-button.open:hover, .update-button.open:hover {
     background-color: transparent;
     color: #5ef6ff;
+    padding: 0px 20px; /* Сохраняем размеры при наведении */
     border: 1px solid #5ef6ff;
   }
   
