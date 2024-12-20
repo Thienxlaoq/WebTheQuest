@@ -51,6 +51,11 @@ body, html {
     animation: bounce 1.5s infinite; /* Анимация для привлечения внимания */
 }
 
+.small-font {
+    font-size: 0.9em;
+}
+
+
 @keyframes bounce {
     0%, 100% {
         transform: translateY(-50%);

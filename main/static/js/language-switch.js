@@ -38,6 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
             { selector: '.block.friends p', key: 'friendsDescription' },
         ];
 
+        // Добавляем класс small-font для русского языка
+        if (lang === 'ru') {
+            document.body.classList.add('small-font');
+        } else {
+            document.body.classList.remove('small-font');
+        }
+
         // Перевод текста
         elementsToTranslate.forEach(({ selector, key }) => {
             const element = document.querySelector(selector);
@@ -104,3 +111,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
