@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             questsTitle: 'Quests around the world!',
             friendsTitle: 'Meet with friends and play together!',
             questsDescription: 'Create your character and start an epic journey: explore locations worldwide, complete unique quests, and uncover hidden mysteries.',
-            friendsDescription: 'Discover the secrets and hidden places you never knew existed. Join others in exciting quests for unforgettable experiences...',
+            friendsDescription: 'Discover the secrets and hidden places you never knew existed. Join others in exciting quests for unforgettable experiences!',
             questsHashtags: ['Physical activity', 'Worldwide', 'Social interactions'],
             friendsHashtags: ['Adventure', 'Teamwork', 'Discovery']
         },
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
             questsTitle: 'Квесты по всему миру!',
             friendsTitle: 'Встречайтесь с друзьями и играйте вместе!',
             questsDescription: 'Создай своего персонажа и начни увлекательное путешествие: исследуй разнообразные места по всему миру, выполняй уникальные задания и раскрывай спрятанные тайны.',
-            friendsDescription: 'Открой секреты и скрытые места, о которых ты даже не подозревал. Присоединяйся к другим игрокам в увлекательных квестах для незабываемых впечатлений...',
+            friendsDescription: 'Открой секреты и скрытые места, о которых ты даже не подозревал. Присоединяйся к другим игрокам в увлекательных квестах для незабываемых впечатлений!',
             questsHashtags: ['Физическая активность', 'По всему миру', 'Социальные взаимодействия'],
             friendsHashtags: ['Приключения', 'Командная работа', 'Открытия']
         }
